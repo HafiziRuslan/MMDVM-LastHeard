@@ -630,6 +630,11 @@ async def mmdvm_logs_observer(stop_event: asyncio.Event):
 			latest_log = get_latest_mmdvm_log_path()
 			if current_log_path != latest_log:
 				logging.info('Switching to new log file: %s', latest_log)
+				if latest_log:
+					if current_log_path:
+						await logs_to_telegram(f'📂 <b>Log File Changed</b>\nNew file: {os.path.basename(latest_log)}')
+					else:
+						await logs_to_telegram(f'📂 <b>Log File Monitoring Started</b>\nFile: {os.path.basename(latest_log)}')
 				current_log_path = latest_log
 
 			if current_log_path:
@@ -713,10 +718,18 @@ async def main():
 				if tg_app_started:
 					try:
 						logging.info('Starting MMDVM logs observer...')
+						await logs_to_telegram(f'🚀 <b>{APP_NAME} Started</b>')
 						await mmdvm_logs_observer(stop_event)
 					except asyncio.CancelledError:
 						logging.info('MMDVM logs observer cancelled.')
 					finally:
+						try:
+							if TG_APP:
+								await TG_APP.bot.send_message(
+									chat_id=TG_CHATID, message_thread_id=TG_TOPICID, text=f'🛑 <b>{APP_NAME} Stopping...</b>', parse_mode='HTML'
+								)
+						except Exception as e:
+							logging.error('Failed to send stop message: %s', e)
 						await TG_APP.stop()
 	finally:
 		if not stop_event.is_set():
