@@ -66,6 +66,30 @@ def configure_logging():
 	logging.basicConfig(level=logging.INFO, datefmt='%Y-%m-%dT%H:%M:%S', format='%(asctime)s | %(levelname)s | %(message)s')
 
 
+def load_env_variables():
+	"""Load environment variables from .env file."""
+	load_dotenv()
+	global TG_BOTTOKEN, TG_CHATID, TG_TOPICID, GW_IGNORE_TIME_MESSAGES
+	TG_BOTTOKEN = os.getenv('TG_BOTTOKEN', '')
+	TG_CHATID = os.getenv('TG_CHATID', '')
+	TG_TOPICID = os.getenv('TG_TOPICID', '0')
+	GW_IGNORE_TIME_MESSAGES = os.getenv('GW_IGNORE_MESSAGES', 'True').lower() == 'true'
+	if not TG_BOTTOKEN:
+		logging.warning('TG_BOTTOKEN is not set in the environment variables.')
+	if not TG_CHATID:
+		logging.warning('TG_CHATID is not set in the environment variables.')
+	if GW_IGNORE_TIME_MESSAGES:
+		logging.info('GW_IGNORE_MESSAGES is set to true, messages from the gateway will be ignored.')
+	logging.info('Environment variables loaded successfully.')
+
+
+def remove_double_spaces(text: str) -> str:
+	"""Removes double spaces from a string."""
+	while '  ' in text:
+		text = text.replace('  ', ' ')
+	return text
+
+
 @lru_cache(maxsize=128)
 def get_country_code(country_name: str) -> str:
 	"""Returns the country code for a given country name."""
@@ -170,6 +194,58 @@ def get_user_csv_data() -> dict:
 				logging.error('Error reading caller file %s: %s', caller_file, e)
 				break
 	return user_map
+
+
+@lru_cache
+def get_mmdvm_log_dir() -> str:
+	"""Reads the MMDVMHost configuration to find the log directory."""
+	conf_files = ['/etc/mmdvmhost', '/etc/MMDVM.ini', '/opt/MMDVMHost/MMDVM.ini']
+	for conf_file in conf_files:
+		if os.path.isfile(conf_file):
+			try:
+				config = configparser.ConfigParser()
+				config.read(conf_file)
+				if config.has_section('Log') and config.has_option('Log', 'FilePath'):
+					log_dir = config.get('Log', 'FilePath')
+					if os.path.isdir(log_dir):
+						return log_dir
+			except Exception:
+				pass
+	default_dirs = ['/var/log/pi-star', '/var/log/mmdvm', '/var/log/MMDVMHost']
+	for log_dir in default_dirs:
+		if os.path.isdir(log_dir):
+			return log_dir
+	return '/var/log/pi-star'
+
+
+def get_latest_mmdvm_log_path() -> Optional[str]:
+	"""Finds and returns the path to the most recent MMDVM log file."""
+	logdir = get_mmdvm_log_dir()
+	log_files = glob.glob(os.path.join(logdir, 'MMDVM-*.log'))
+	if not log_files:
+		return None
+	log_files.sort(key=os.path.getmtime, reverse=True)
+	latest_log = log_files[0]
+	logging.debug('Latest MMDVM log file: %s', latest_log)
+	return latest_log
+
+
+def get_last_line_of_file(file_path: str) -> str:
+	"""Reads the last line of a file using seek for performance."""
+	try:
+		with open(file_path, 'rb') as f:
+			try:
+				f.seek(-4096, os.SEEK_END)
+			except OSError:
+				f.seek(0)
+			lines = f.readlines()
+			for line in reversed(lines):
+				decoded = line.decode('utf-8', errors='replace').strip()
+				if len(decoded) >= 10:
+					return decoded
+	except OSError as e:
+		logging.error('Error reading last line of file %s: %s', file_path, e)
+	return ''
 
 
 @dataclass
@@ -504,58 +580,6 @@ class MMDVMLogLine:
 		return message
 
 
-@lru_cache
-def get_mmdvm_log_dir() -> str:
-	"""Reads the MMDVMHost configuration to find the log directory."""
-	conf_files = ['/etc/mmdvmhost', '/etc/MMDVM.ini', '/opt/MMDVMHost/MMDVM.ini']
-	for conf_file in conf_files:
-		if os.path.isfile(conf_file):
-			try:
-				config = configparser.ConfigParser()
-				config.read(conf_file)
-				if config.has_section('Log') and config.has_option('Log', 'FilePath'):
-					log_dir = config.get('Log', 'FilePath')
-					if os.path.isdir(log_dir):
-						return log_dir
-			except Exception:
-				pass
-	default_dirs = ['/var/log/pi-star', '/var/log/mmdvm', '/var/log/MMDVMHost']
-	for log_dir in default_dirs:
-		if os.path.isdir(log_dir):
-			return log_dir
-	return '/var/log/pi-star'
-
-
-def get_latest_mmdvm_log_path() -> Optional[str]:
-	"""Finds and returns the path to the most recent MMDVM log file."""
-	logdir = get_mmdvm_log_dir()
-	log_files = glob.glob(os.path.join(logdir, 'MMDVM-*.log'))
-	if not log_files:
-		return None
-	log_files.sort(key=os.path.getmtime, reverse=True)
-	latest_log = log_files[0]
-	logging.debug('Latest MMDVM log file: %s', latest_log)
-	return latest_log
-
-
-def get_last_line_of_file(file_path: str) -> str:
-	"""Reads the last line of a file using seek for performance."""
-	try:
-		with open(file_path, 'rb') as f:
-			try:
-				f.seek(-4096, os.SEEK_END)
-			except OSError:
-				f.seek(0)
-			lines = f.readlines()
-			for line in reversed(lines):
-				decoded = line.decode('utf-8', errors='replace').strip()
-				if len(decoded) >= 10:
-					return decoded
-	except OSError as e:
-		logging.error('Error reading last line of file %s: %s', file_path, e)
-	return ''
-
-
 async def logs_to_telegram(tg_message: str):
 	"""Queues the log line to be sent to the Telegram bot."""
 	if MESSAGE_QUEUE:
@@ -592,30 +616,6 @@ async def telegram_message_worker(stop_event: asyncio.Event):
 			await asyncio.sleep(0.5)
 		except Exception as e:
 			logging.error('Error in Telegram message worker: %s', e)
-
-
-def remove_double_spaces(text: str) -> str:
-	"""Removes double spaces from a string."""
-	while '  ' in text:
-		text = text.replace('  ', ' ')
-	return text
-
-
-def load_env_variables():
-	"""Load environment variables from .env file."""
-	load_dotenv()
-	global TG_BOTTOKEN, TG_CHATID, TG_TOPICID, GW_IGNORE_TIME_MESSAGES
-	TG_BOTTOKEN = os.getenv('TG_BOTTOKEN', '')
-	TG_CHATID = os.getenv('TG_CHATID', '')
-	TG_TOPICID = os.getenv('TG_TOPICID', '0')
-	GW_IGNORE_TIME_MESSAGES = os.getenv('GW_IGNORE_MESSAGES', 'True').lower() == 'true'
-	if not TG_BOTTOKEN:
-		logging.warning('TG_BOTTOKEN is not set in the environment variables.')
-	if not TG_CHATID:
-		logging.warning('TG_CHATID is not set in the environment variables.')
-	if GW_IGNORE_TIME_MESSAGES:
-		logging.info('GW_IGNORE_MESSAGES is set to true, messages from the gateway will be ignored.')
-	logging.info('Environment variables loaded successfully.')
 
 
 async def mmdvm_logs_observer(stop_event: asyncio.Event):
