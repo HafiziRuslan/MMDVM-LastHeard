@@ -267,3 +267,4 @@ $RECYCLE.BIN/
 # End of https://www.toptal.com/developers/gitignore/api/dotenv,python,pythonvanilla,venv,virtualenv,visualstudiocode,windows
 
 .archive/
+sample/
