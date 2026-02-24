@@ -2,14 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
-## [beta4] - (2026-02-25T03:25:43+08:00)
+## [beta4] - (2026-02-25T04:00:37+08:00)
 
-- 40 commit(s) contributed to the release.
+- 41 commit(s) contributed to the release.
 - 35 day(s) passed between the first and last commit.
 - 35 day(s) passed between releases.
 
 ### 🚀 Features in beta4
 
+- [171ffb4](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/171ffb4bdf649b8b2cdb031209bfb55d181b5302) feat(main): extend log patterns and dmr data parsing *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-02-25T04:00:37+08:00*
 - [429a038](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/429a038472dc9cca86c0399de45e3fe99ee7ef78) feat(.gitignore): ignore sample directory added *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-02-25T02:52:54+08:00*
 - [68003ad](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/68003adae9451766e2401bf75623c75051053cb0) feat(main): notify on log file changes and startup/shutdown *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-02-25T02:46:17+08:00*
 - [6cfee16](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/6cfee16b09f2498c099873756e6824c52b6a83ad) feat(main): integrate env loading and log helpers *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-02-25T02:16:40+08:00*
@@ -310,4 +311,4 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-generated using git-cliff at 2026-02-25T03:26:12.399084848+08:00
+generated using git-cliff at 2026-02-25T04:01:10.703200455+08:00
