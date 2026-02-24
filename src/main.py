@@ -30,7 +30,16 @@ TG_TOPICID: str = ''
 GW_IGNORE_TIME_MESSAGES: bool = True
 TG_APP: Optional[TelegramApplication] = None
 MESSAGE_QUEUE: Optional[asyncio.Queue] = None
-RELEVANT_LOG_PATTERNS = ['end of voice transmission', 'end of transmission', 'watchdog has expired', 'received RF data', 'received network data']
+RELEVANT_LOG_PATTERNS = [
+	'end of voice transmission',
+	'end of transmission',
+	'watchdog has expired',
+	'received RF data',
+	'received network data',
+	'received network Data',
+	'ended RF data transmission',
+	'ended network data transmission',
+]
 
 
 @lru_cache
@@ -248,6 +257,7 @@ class MMDVMLogLine:
 	mode: str = ''
 	callsign: str = ''
 	destination: str = ''
+	data_type: str = ''
 	block: int = 0
 	duration: float = 0.0
 	packet_loss: int = 0
@@ -276,8 +286,8 @@ class MMDVMLogLine:
 	)
 	DMR_DATA_PATTERN = re.compile(
 		r'^M: (?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d+) '
-		r'DMR Slot (?P<slot>\d), received (?P<source>network|RF) data(?: header)? '
-		r'from (?P<callsign>[\w\d\-/]+) to (?P<destination>(TG [\d\w]+)|[\d\w]+)'
+		r'DMR Slot (?P<slot>\d), (?:received|ended) (?P<source>network|RF) (?P<dtype>[Dd]ata(?: (?:header|block|transmission|Preamble CSBK(?: \(\d+ to follow\))?))?)'
+		r'(?: from (?P<callsign>[\w\d\-/]+) to (?P<destination>(TG [\d\w]+)|[\d\w]+))?'
 		r'(?:, (?P<block>[\d]+) blocks)?'
 	)
 	DSTAR_PATTERN = re.compile(
@@ -367,10 +377,13 @@ class MMDVMLogLine:
 			obj.slot = int(match.group('slot'))
 			obj.is_network = match.group('source') == 'network'
 			obj.is_voice = False
-			obj.callsign = match.group('callsign').strip()
-			obj.destination = match.group('destination').strip()
+			obj.data_type = match.group('dtype')
+			if match.group('callsign'):
+				obj.callsign = match.group('callsign').strip()
+				obj._set_url(obj.callsign)
+			if match.group('destination'):
+				obj.destination = match.group('destination').strip()
 			obj.block = int(match.group('block')) if match.group('block') else 0
-			obj._set_url(obj.callsign)
 			return obj
 		return None
 
@@ -557,6 +570,13 @@ class MMDVMLogLine:
 					message += f'\n📶 <b>RSSI</b>: {self.rssi}'
 		else:
 			message += '\n💾 <b>Type</b>: Data'
+			if self.data_type:
+				if 'preamble csbk' in self.data_type:
+					message += ' (CSBK Preamble)'
+				elif 'end of' in self.data_type:
+					message += ' (End)'
+				elif 'header' in self.data_type:
+					message += ' (Header)'
 			message += f'\n📦 <b>Blocks</b>: {self.block}'
 		if self.is_watchdog:
 			message += '\n\n⚠️ <b>Warning</b>: Network watchdog expired'
