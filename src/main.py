@@ -56,7 +56,7 @@ def get_app_metadata():
 			meta['github'] = data.get('urls', {}).get('github', meta['github'])
 	except Exception as e:
 		logging.warning('Failed to load project metadata: %s', e)
-	return f'{meta["name"]}-v{meta["version"]}-{git_sha}', meta['github']
+	return f'{meta["name"]}-{meta["version"]}-{git_sha}', meta['github']
 
 
 APP_NAME, PROJECT_URL = get_app_metadata()
