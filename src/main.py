@@ -647,7 +647,7 @@ async def mmdvm_logs_observer(stop_event: asyncio.Event):
 				if latest_log:
 					if current_log_path:
 						await logs_to_telegram(
-							f'📃 Log Changed\nFile: <s>{os.path.basename(current_log_path)}</s> ➡️ <b>{os.path.basename(latest_log)}</b>'
+							f'📃 Log Changed\nOld File: <s>{os.path.basename(current_log_path)}</s>\nNew File: <b>{os.path.basename(latest_log)}</b>'
 						)
 					else:
 						await logs_to_telegram(f'📃 Monitoring Log\nFile: <b>{os.path.basename(latest_log)}</b>')
