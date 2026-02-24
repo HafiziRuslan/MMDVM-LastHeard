@@ -2,14 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
-## [beta4] - (2026-02-24T22:41:19+08:00)
+## [beta4] - (2026-02-25T02:16:40+08:00)
 
-- 35 commit(s) contributed to the release.
+- 37 commit(s) contributed to the release.
 - 35 day(s) passed between the first and last commit.
 - 35 day(s) passed between releases.
 
 ### 🚀 Features in beta4
 
+- [6cfee16](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/6cfee16b09f2498c099873756e6824c52b6a83ad) feat(main): integrate env loading and log helpers *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-02-25T02:16:40+08:00*
 - [f858c87](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/f858c873bb460e533f387ca9f4ce79fcd3063ddc) feat(main): add difflib-based country code fallback and read caller file with encoding fallback *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-02-22T06:04:22+08:00*
 - [be30006](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/be300067d65f56b4cfc3d1efe439a3d3d52090a7) feat(main): add suffix support to talkgroup file reader *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-02-22T05:20:42+08:00*
 - [d5920e1](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/d5920e195d79e2ac062429e65e8178f4d0c123e1) feat(main): integrate cache-backed talkgroup/user data and async telegram worker *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-02-22T04:59:10+08:00*
@@ -26,6 +27,7 @@ All notable changes to this project will be documented in this file.
 
 ### 🐛 Bug Fixes in beta4
 
+- [5d3770c](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/5d3770c9d7e6fb96e624b08726c85b9503211a41) fix(data): correct git sha retrieval in metadata *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-02-25T02:10:10+08:00*
 - [2061310](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/20613101cde2df47bf2f0db03a544db2f9270e5c) fix(client): correct app metadata format in get_app_metadata *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-02-24T22:41:19+08:00*
 - [e8ad7f2](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/e8ad7f2a71b400f5d00764958553f779165fb4c4) fix(core): align project naming across files *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-02-22T06:17:26+08:00*
 - [c6cb51f](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/c6cb51f5b0b4629df0f598b53ccde533ca525478) fix(toml): standardize quotes and formatting in pyproject.toml *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-02-22T06:07:51+08:00*
@@ -305,4 +307,4 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-generated using git-cliff at 2026-02-24T22:41:57.324269996+08:00
+generated using git-cliff at 2026-02-25T02:27:23.548946102+08:00
