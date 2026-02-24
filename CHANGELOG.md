@@ -2,11 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
-## [beta4] - (2026-02-22T06:17:26+08:00)
+## [beta4] - (2026-02-24T22:41:19+08:00)
 
-- 34 commit(s) contributed to the release.
-- 32 day(s) passed between the first and last commit.
-- 32 day(s) passed between releases.
+- 35 commit(s) contributed to the release.
+- 35 day(s) passed between the first and last commit.
+- 35 day(s) passed between releases.
 
 ### 🚀 Features in beta4
 
@@ -26,6 +26,7 @@ All notable changes to this project will be documented in this file.
 
 ### 🐛 Bug Fixes in beta4
 
+- [2061310](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/20613101cde2df47bf2f0db03a544db2f9270e5c) fix(client): correct app metadata format in get_app_metadata *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-02-24T22:41:19+08:00*
 - [e8ad7f2](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/e8ad7f2a71b400f5d00764958553f779165fb4c4) fix(core): align project naming across files *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-02-22T06:17:26+08:00*
 - [c6cb51f](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/c6cb51f5b0b4629df0f598b53ccde533ca525478) fix(toml): standardize quotes and formatting in pyproject.toml *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-02-22T06:07:51+08:00*
 - [57bc835](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/57bc835a55b4994022955b4261d07c07ae8cbfbf) fix(country_codes): correct and expand country codes list *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-02-22T06:04:04+08:00*
@@ -304,4 +305,4 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-generated using git-cliff at 2026-02-22T06:17:51.404457181+08:00
+generated using git-cliff at 2026-02-24T22:41:57.324269996+08:00
