@@ -2,9 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
-## [beta4] - (2026-02-25T04:00:37+08:00)
+## [beta4] - (2026-02-25T04:20:58+08:00)
 
-- 41 commit(s) contributed to the release.
+- 43 commit(s) contributed to the release.
 - 35 day(s) passed between the first and last commit.
 - 35 day(s) passed between releases.
 
@@ -30,6 +30,7 @@ All notable changes to this project will be documented in this file.
 
 ### 🐛 Bug Fixes in beta4
 
+- [8ce3f49](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/8ce3f497ab76ed890bd1fbd8ac1396c5139cc00c) fix(main): simplify telegram messages and text formatting *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-02-25T04:20:47+08:00*
 - [0f91a59](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/0f91a59b9a6dd6f08323d107bcdec0d1b8d1bbec) fix(app): normalize log patterns and broaden callsign in parsers *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-02-25T03:25:43+08:00*
 - [5d3770c](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/5d3770c9d7e6fb96e624b08726c85b9503211a41) fix(data): correct git sha retrieval in metadata *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-02-25T02:10:10+08:00*
 - [2061310](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/20613101cde2df47bf2f0db03a544db2f9270e5c) fix(client): correct app metadata format in get_app_metadata *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-02-24T22:41:19+08:00*
@@ -311,4 +312,4 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-generated using git-cliff at 2026-02-25T04:01:10.703200455+08:00
+generated using git-cliff at 2026-02-25T04:21:24.932770312+08:00
