@@ -2,9 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
-## [beta5] - (2026-02-25T23:45:10+08:00)
+## [beta5] - (2026-02-25T23:52:00+08:00)
 
-- 4 commit(s) contributed to the release.
+- 5 commit(s) contributed to the release.
 - 1 day(s) passed between releases.
 
 ### 🚀 Features in beta5
@@ -18,6 +18,7 @@ All notable changes to this project will be documented in this file.
 
 ### ⚙️ Miscellaneous Tasks in beta5
 
+- [11413f9](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/11413f95397efcf401009081c1a66bcb427b176f) chore(workflows): use short SHA as changelog commit message *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-02-25T23:52:00+08:00*
 - [23d920a](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/23d920acadc5fc9d57a0c150ccf92e747df6020d) chore(release): update version to 0.1b5 and certifi to 2026.2.25 *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-02-25T21:16:33+08:00*
 
 ---
@@ -338,4 +339,4 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-generated using git-cliff at 2026-02-25T23:46:18.154856416+08:00
+generated using git-cliff at 2026-02-25T23:52:42.383039645+08:00
