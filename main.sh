@@ -173,10 +173,10 @@ if [ "$INTERNET_AVAILABLE" = true ] && check_disk_space; then
 
       if [ "$UPDATE_SUCCESS" = true ] && [ "$(sudo -u $dir_own git rev-parse HEAD)" = "$REMOTE" ]; then
         if ! sudo -u $dir_own git diff --quiet "$LOCAL" HEAD -- pyproject.toml; then
-          log_msg INFO "Application updated. Forcing environement recreation."
+          log_msg INFO "Application updated. Forcing environment recreation."
           rm -rf .venv
         fi
-        
+
         log_msg INFO "Verifying repository integrity..."
         if sudo -u $dir_own git fsck --full >/dev/null 2>&1; then
           log_msg INFO "Update applied and verified. Restarting script..."
