@@ -2,10 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
-## [beta5] - (2026-02-26T00:00:31+08:00)
+## [beta5] - (2026-02-28T01:33:33+08:00)
 
-- 7 commit(s) contributed to the release.
-- 1 day(s) passed between releases.
+- 8 commit(s) contributed to the release.
+- 2 day(s) passed between the first and last commit.
+- 3 day(s) passed between releases.
 
 ### 🚀 Features in beta5
 
@@ -19,6 +20,7 @@ All notable changes to this project will be documented in this file.
 
 ### ⚙️ Miscellaneous Tasks in beta5
 
+- [7d4f18b](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/7d4f18b288478ac686bff2d0620f84cb5bfeb225) chore(sbom): update sbom.json metadata with new serialNumber, timestamp, and uv tool version *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-02-28T01:33:33+08:00*
 - [71e97de](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/71e97de792458f66e64309cacf3c0dd069c32ec1) chore(ci): update changelog commit message *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-02-25T23:57:45+08:00*
 - [11413f9](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/11413f95397efcf401009081c1a66bcb427b176f) chore(workflows): use short SHA as changelog commit message *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-02-25T23:52:00+08:00*
 - [23d920a](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/23d920acadc5fc9d57a0c150ccf92e747df6020d) chore(release): update version to 0.1b5 and certifi to 2026.2.25 *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-02-25T21:16:33+08:00*
@@ -341,4 +343,4 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-generated using git-cliff at 2026-02-26T00:01:07.372591015+08:00
+generated using git-cliff at 2026-02-28T01:34:04.418105553+08:00
