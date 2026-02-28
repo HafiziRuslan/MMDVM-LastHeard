@@ -2,9 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
-## [beta5] - (2026-03-01T01:22:50+08:00)
+## [beta5] - (2026-03-01T02:04:42+08:00)
 
-- 11 commit(s) contributed to the release.
+- 14 commit(s) contributed to the release.
 - 3 day(s) passed between the first and last commit.
 - 4 day(s) passed between releases.
 
@@ -24,8 +24,17 @@ All notable changes to this project will be documented in this file.
 - [4030e36](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/4030e36cee998736a24a8e75f0ec5d08a046c24d) Modify changelog commit message format *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-01T01:21:53+08:00*
 - [65e6863](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/65e6863e86d938675212d4c51dd2326f07d1266f) Add Contributor Covenant Code of Conduct *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-01T01:18:52+08:00*
 
+### 🚜 Refactor in beta5
+
+- [83740ce](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/83740ce4685d867203674be315a05768c3553380) docs(contributing): add CONTRIBUTING.md with contribution guidelines *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-01T02:04:19+08:00*
+
+### 📚 Documentation in beta5
+
+- [f493309](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/f493309bb66030f9b881525c979ae3bdd13dbf41) docs(code-of-conduct): update Code of Conduct - MMDVM-LastHeard with British English and revised enforcement *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-01T02:00:43+08:00*
+
 ### ⚙️ Miscellaneous Tasks in beta5
 
+- [9e94de8](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/9e94de88f12aac9e0cdaeeec9de41132c86c9ce9) chore(pull-request-template): add pull_request_template.md *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-01T02:04:42+08:00*
 - [7d4f18b](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/7d4f18b288478ac686bff2d0620f84cb5bfeb225) chore(sbom): update sbom.json metadata with new serialNumber, timestamp, and uv tool version *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-02-28T01:33:33+08:00*
 - [71e97de](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/71e97de792458f66e64309cacf3c0dd069c32ec1) chore(ci): update changelog commit message *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-02-25T23:57:45+08:00*
 - [11413f9](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/11413f95397efcf401009081c1a66bcb427b176f) chore(workflows): use short SHA as changelog commit message *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-02-25T23:52:00+08:00*
@@ -349,4 +358,4 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-generated using git-cliff at 2026-03-01T01:23:10.094907212+08:00
+generated using git-cliff at 2026-03-01T02:05:13.764394382+08:00
