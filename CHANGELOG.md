@@ -2,11 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
-## [beta5] - (2026-02-28T01:33:33+08:00)
+## [beta5] - (2026-03-01T01:18:52+08:00)
 
-- 8 commit(s) contributed to the release.
-- 2 day(s) passed between the first and last commit.
-- 3 day(s) passed between releases.
+- 9 commit(s) contributed to the release.
+- 3 day(s) passed between the first and last commit.
+- 4 day(s) passed between releases.
 
 ### 🚀 Features in beta5
 
@@ -17,6 +17,10 @@ All notable changes to this project will be documented in this file.
 - [e690922](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/e690922fefc3a1a912cbe2ace5131c40b28ca9b5) docs(changelog): prefix changelog update commit with docs scope in workflow *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-02-26T00:00:31+08:00*
 - [49788fc](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/49788fc9befd18dec3bdebbffb4ce86d46cf0a39) fix(main): correct typo in log message for environment recreation *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-02-25T23:45:10+08:00*
 - [bed6bf4](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/bed6bf4fb36e20b6fbe7d45ad53f76cea0e2a713) fix(changelog): update Tera template syntax and formatting for consistency *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-02-25T21:20:53+08:00*
+
+### 💼 Other in beta5
+
+- [65e6863](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/65e6863e86d938675212d4c51dd2326f07d1266f) Add Contributor Covenant Code of Conduct *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-01T01:18:52+08:00*
 
 ### ⚙️ Miscellaneous Tasks in beta5
 
@@ -343,4 +347,4 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-generated using git-cliff at 2026-02-28T01:34:04.418105553+08:00
+generated using git-cliff at 2026-03-01T01:19:12.971283134+08:00
