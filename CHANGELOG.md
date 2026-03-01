@@ -2,11 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
-## [beta5] - (2026-03-01T02:04:42+08:00)
+## [beta5] - (2026-03-02T05:52:04+08:00)
 
-- 14 commit(s) contributed to the release.
-- 3 day(s) passed between the first and last commit.
-- 4 day(s) passed between releases.
+- 15 commit(s) contributed to the release.
+- 4 day(s) passed between the first and last commit.
+- 5 day(s) passed between releases.
 
 ### 🚀 Features in beta5
 
@@ -26,6 +26,7 @@ All notable changes to this project will be documented in this file.
 
 ### 🚜 Refactor in beta5
 
+- [920cedb](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/920cedbffb0da340fea3475a28c9db54bc7263d8) refactor(logging): centralize and enhance log handling across shell and Python; redirect stdout/stderr to log file, create and manage log directory, implement rotating log handlers, and unify log pattern definitions; update tests to reflect single-line pattern list *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-02T05:52:04+08:00*
 - [83740ce](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/83740ce4685d867203674be315a05768c3553380) docs(contributing): add CONTRIBUTING.md with contribution guidelines *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-01T02:04:19+08:00*
 
 ### 📚 Documentation in beta5
@@ -358,4 +359,4 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-generated using git-cliff at 2026-03-01T02:05:13.764394382+08:00
+generated using git-cliff at 2026-03-02T05:53:03.543315844+08:00
