@@ -2,14 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
-## [beta5] - (2026-03-04T06:38:38+08:00)
+## [beta5] - (2026-03-04T08:10:43+08:00)
 
-- 19 commit(s) contributed to the release.
-- 6 day(s) passed between the first and last commit.
-- 7 day(s) passed between releases.
+- 21 commit(s) contributed to the release.
+- 7 day(s) passed between the first and last commit.
+- 8 day(s) passed between releases.
 
 ### 🚀 Features in beta5
 
+- [9b25681](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/9b25681472c4ad9315552bb9d132a5f128d87fa8) feat(main): add MCC-based flag emoji support and dynamic talkgroup mapping *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-04T08:10:43+08:00*
+- [6fec89f](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/6fec89fc227d45ece58296aa1ae21e8872c47adb) feat(mcc-codes): add MCC_CODES mapping for MCC to country and ISO code *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-04T08:09:27+08:00*
 - [9064283](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/906428396d6cddd1294195aa81c953054072ac26) feat(talkgroups): add dynamic loading, caching, and DMRGateway-based remapping for talkgroups *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-04T06:38:38+08:00*
 - [fc60870](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/fc608703bafe73cc389eb90bb976648181846143) feat(logging): add NumberedRotatingFileHandler to rotate logs with numbered backups before extension and update log setup to use it *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-04T02:43:26+08:00*
 - [b298eed](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/b298eed98448e39aafc0cb362ca192caebcc801a) feat(telegrams): prefix log/status notifications with APP_NAME-derived prefix *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-04T02:40:30+08:00*
@@ -363,4 +365,4 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-generated using git-cliff at 2026-03-04T06:39:17.460382554+08:00
+generated using git-cliff at 2026-03-04T08:11:50.596153243+08:00
