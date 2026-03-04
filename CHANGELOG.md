@@ -2,9 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
-## [beta5] - (2026-03-04T08:10:43+08:00)
+## [beta5] - (2026-03-04T08:55:27+08:00)
 
-- 21 commit(s) contributed to the release.
+- 24 commit(s) contributed to the release.
 - 7 day(s) passed between the first and last commit.
 - 8 day(s) passed between releases.
 
@@ -19,6 +19,7 @@ All notable changes to this project will be documented in this file.
 
 ### 🐛 Bug Fixes in beta5
 
+- [82ef3eb](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/82ef3ebca8b1abe118872a0e8b9f4bfb72320bac) refactor(imports): move MCC_CODES import after load_dotenv *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-04T08:23:05+08:00*
 - [e690922](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/e690922fefc3a1a912cbe2ace5131c40b28ca9b5) docs(changelog): prefix changelog update commit with docs scope in workflow *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-02-26T00:00:31+08:00*
 - [49788fc](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/49788fc9befd18dec3bdebbffb4ce86d46cf0a39) fix(main): correct typo in log message for environment recreation *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-02-25T23:45:10+08:00*
 - [bed6bf4](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/bed6bf4fb36e20b6fbe7d45ad53f76cea0e2a713) fix(changelog): update Tera template syntax and formatting for consistency *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-02-25T21:20:53+08:00*
@@ -31,6 +32,8 @@ All notable changes to this project will be documented in this file.
 
 ### 🚜 Refactor in beta5
 
+- [c2b092e](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/c2b092e429a7ccf58a0684d7a9be2915fbf62ad5) refactor(log_processor): return parsed entries and statistics from process_log_file and add display_processed_results for formatted output; update main to render results and adjust error handling to return empty structures; minor test output formatting improvements *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-04T08:55:27+08:00*
+- [6d0267f](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/6d0267fa63e0fd25588b1da2690dfc862c36b238) refactor(codes): consolidate MCC_CODES and COUNTRY_CODES into codes.py; rename mcc_codes.py to codes.py and remove country_codes.py; update imports in main.py *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-04T08:40:34+08:00*
 - [617b94f](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/617b94f26bc7c34df9c97510e6d79fe872621473) refactor(log-processor): unify regex components for MMDVM log parsing, centralize pattern parts and simplify parsers *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-04T05:56:13+08:00*
 - [920cedb](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/920cedbffb0da340fea3475a28c9db54bc7263d8) refactor(logging): centralize and enhance log handling across shell and Python; redirect stdout/stderr to log file, create and manage log directory, implement rotating log handlers, and unify log pattern definitions; update tests to reflect single-line pattern list *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-02T05:52:04+08:00*
 - [83740ce](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/83740ce4685d867203674be315a05768c3553380) docs(contributing): add CONTRIBUTING.md with contribution guidelines *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-01T02:04:19+08:00*
@@ -365,4 +368,4 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-generated using git-cliff at 2026-03-04T08:11:50.596153243+08:00
+generated using git-cliff at 2026-03-04T08:56:24.674142081+08:00
