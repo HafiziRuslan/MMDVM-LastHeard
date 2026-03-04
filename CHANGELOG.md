@@ -2,9 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
-## [beta5] - (2026-03-04T08:55:27+08:00)
+## [beta5] - (2026-03-04T09:39:37+08:00)
 
-- 24 commit(s) contributed to the release.
+- 25 commit(s) contributed to the release.
 - 7 day(s) passed between the first and last commit.
 - 8 day(s) passed between releases.
 
@@ -32,6 +32,7 @@ All notable changes to this project will be documented in this file.
 
 ### 🚜 Refactor in beta5
 
+- [71453c5](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/71453c54594179717fbe897791c7d72aeaa25b10) refactor(main): replace uv cache clean with uv tool run pyclean in sync_dependencies *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-04T09:39:37+08:00*
 - [c2b092e](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/c2b092e429a7ccf58a0684d7a9be2915fbf62ad5) refactor(log_processor): return parsed entries and statistics from process_log_file and add display_processed_results for formatted output; update main to render results and adjust error handling to return empty structures; minor test output formatting improvements *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-04T08:55:27+08:00*
 - [6d0267f](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/6d0267fa63e0fd25588b1da2690dfc862c36b238) refactor(codes): consolidate MCC_CODES and COUNTRY_CODES into codes.py; rename mcc_codes.py to codes.py and remove country_codes.py; update imports in main.py *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-04T08:40:34+08:00*
 - [617b94f](https://github.com/HafiziRuslan/MMDVM-Last-Heard/commit/617b94f26bc7c34df9c97510e6d79fe872621473) refactor(log-processor): unify regex components for MMDVM log parsing, centralize pattern parts and simplify parsers *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-04T05:56:13+08:00*
@@ -368,4 +369,4 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-generated using git-cliff at 2026-03-04T08:56:24.674142081+08:00
+generated using git-cliff at 2026-03-04T09:40:38.111082375+08:00
