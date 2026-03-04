@@ -19,15 +19,15 @@ This project is a Python-based Telegram bot that monitors MMDVM logs and sends u
 ## 🛠️ Installation
 
 ```bash
-git clone https://github.com/HafiziRuslan/MMDVM-Last-Heard.git mmdvmlhbot
+git clone https://github.com/HafiziRuslan/MMDVM-LastHeard.git mmdvmlhbot
 cd mmdvmlhbot
 ```
 
 Mirror Repositories (delayed daily update):
 
-- GitLab: <https://gitlab.com/hafiziruslan/MMDVM-Last-Heard>
-- Codeberg: <https://codeberg.org/hafiziruslan/MMDVM-Last-Heard>
-- Gitea: <https://gitea.com/HafiziRuslan/MMDVM-Last-Heard>
+- GitLab: <https://gitlab.com/hafiziruslan/MMDVM-LastHeard>
+- Codeberg: <https://codeberg.org/hafiziruslan/MMDVM-LastHeard>
+- Gitea: <https://gitea.com/HafiziRuslan/MMDVM-LastHeard>
 
 ## ⚙️ Configuration
 

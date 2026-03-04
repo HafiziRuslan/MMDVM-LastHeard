@@ -25,7 +25,7 @@ jobs:
         with:
           host: https://codeberg.org
           owner: hafiziruslan
-          repo: MMDVM-Last-Heard
+          repo: MMDVM-LastHeard
           create: false
           username: hafiziruslan
           password: ${{ secrets.CODEBERG_TOKEN }}
@@ -46,7 +46,7 @@ jobs:
         with:
           host: https://gitlab.com
           owner: hafiziruslan
-          repo: MMDVM-Last-Heard
+          repo: MMDVM-LastHeard
           create: false
           username: hafiziruslan
           password: ${{ secrets.GITLAB_TOKEN }}
@@ -67,7 +67,7 @@ jobs:
         with:
           host: https://gitea.com
           owner: hafiziruslan
-          repo: MMDVM-Last-Heard
+          repo: MMDVM-LastHeard
           create: false
           username: hafiziruslan
           password: ${{ secrets.GITEA_TOKEN }}
