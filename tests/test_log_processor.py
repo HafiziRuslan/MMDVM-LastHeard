@@ -59,9 +59,9 @@ except Exception as e:
 
 def run_unit_tests():
 	"""Runs a series of predefined unit tests for log line parsing."""
-	print('=' * 80)
+	print(f'{"=" * 80}')
 	print('🔬 Running Unit Tests for Log Line Parsing')
-	print('=' * 80)
+	print(f'{"=" * 80}')
 
 	test_cases = [
 		{
@@ -110,45 +110,42 @@ def run_unit_tests():
 				print('  ✅ PASS')
 				passed += 1
 			else:
-				print(f'  ❌ FAIL\n' + '\n'.join(errors))
+				print(f'  ❌ FAIL: {"".join(errors)}')
 				failed += 1
 		except Exception as e:
 			print(f'  ❌ FAIL: Exception during parsing: {e}')
 			failed += 1
 
-	print('\n' + '=' * 80)
+	print(f'\n{"=" * 80}')
 	print(f'Test Results: {passed} passed, {failed} failed.')
-	print('=' * 80)
+	print(f'{"=" * 80}')
 	sys.exit(failed)
 
 
-def process_log_file(log_file_path: str, ignore_time_messages: bool = True):
+def process_log_file(log_file_path: str, ignore_time_messages: bool = True) -> tuple[list, dict]:
 	"""
-	Process a log file and display all entries that would be sent to Telegram.
+	Process a log file and return parsed entries and statistics.
 
 	Args:
 	        log_file_path: Path to the MMDVM log file
 	        ignore_time_messages: Whether to ignore /TIME messages (default: True)
+
+	Returns:
+	        A tuple containing a list of parsed entries and a dictionary of statistics.
 	"""
 
 	# Patterns to match (same as in main.py)
 	relevant_patterns = RELEVANT_LOG_PATTERNS
 
-	print('=' * 80)
-	print(f'Processing log file: {log_file_path}')
-	print('=' * 80)
-	print()
-
 	if not os.path.exists(log_file_path):
 		print(f'❌ Error: File not found: {log_file_path}')
-		return
+		return [], {}
 
 	total_lines = 0
 	matched_lines = 0
 	parsed_entries = 0
 	telegram_messages = 0
 	last_timestamp = None
-
 	entries = []
 
 	try:
@@ -156,89 +153,79 @@ def process_log_file(log_file_path: str, ignore_time_messages: bool = True):
 			for line_num, line in enumerate(f, 1):
 				total_lines += 1
 				line = line.strip()
-
-				# Skip empty lines
 				if not line or len(line) < 10:
 					continue
-
-				# Check if line matches our patterns
 				if not any(pattern in line.lower() for pattern in relevant_patterns):
 					continue
-
 				matched_lines += 1
-
 				try:
-					# Parse the log line
 					parsed = MMDVMLogLine.from_logline(line)
 					parsed_entries += 1
-
-					# Check if this is a duplicate timestamp (same as last processed)
 					if last_timestamp and parsed.timestamp <= last_timestamp:
 						continue
-
 					last_timestamp = parsed.timestamp
-
-					# Check if we should ignore this message
 					if ignore_time_messages and '/TIME' in parsed.callsign:
 						continue
-
-					# Get the Telegram message
 					tg_message = parsed.get_telegram_message()
-
 					if tg_message:
 						telegram_messages += 1
 						entries.append({'line_num': line_num, 'parsed': parsed, 'message': tg_message})
-
 				except ValueError:
-					# Line didn't match any pattern
 					pass
 				except Exception as e:
 					print(f'⚠️ Warning at line {line_num}: {e}')
-
 	except Exception as e:
 		print(f'❌ Error reading file: {e}')
-		return
+		return [], {}
 
+	stats = {'total_lines': total_lines, 'matched_lines': matched_lines, 'parsed_entries': parsed_entries, 'telegram_messages': telegram_messages}
+	return entries, stats
+
+
+def display_processed_results(entries: list, stats: dict, log_file_path: str):
+	"""Displays the statistics and formatted messages from a processed log file."""
+	print(f'{"=" * 80}')
+	print(f'Processing log file: {log_file_path}')
+	print(f'{"=" * 80}')
+	print()
 	# Display statistics
 	print('📊 Statistics:')
-	print(f'  Total lines in file: {total_lines}')
-	print(f'  Lines matching patterns: {matched_lines}')
-	print(f'  Successfully parsed entries: {parsed_entries}')
-	print(f'  Messages for Telegram: {telegram_messages}')
+	print(f'  Total lines in file: {stats["total_lines"]}')
+	print(f'  Lines matching patterns: {stats["matched_lines"]}')
+	print(f'  Successfully parsed entries: {stats["parsed_entries"]}')
+	print(f'  Messages for Telegram: {stats["telegram_messages"]}')
 	print()
 
-	if telegram_messages == 0:
+	if stats['telegram_messages'] > 0:
+		# Display all messages
+		print(f'{"=" * 80}')
+		print(f'📱 TELEGRAM MESSAGES ({stats["telegram_messages"]} total)')
+		print(f'{"=" * 80}')
+		print()
+		for idx, entry in enumerate(entries, 1):
+			print(f'{"─" * 80}')
+			print(f'Message #{idx} (from line {entry["line_num"]})')
+			print(f'{"─" * 80}')
+			parsed = entry['parsed']
+			print(f'🕒 Timestamp: {parsed.timestamp}')
+			print(f'📶 Mode: {parsed.mode}')
+			print(f'📡 Callsign: {parsed.callsign}')
+			print(f'🎯 Destination: {parsed.destination}')
+			print(f'🛜 Network: {"Yes" if parsed.is_network else "No (RF)"}')
+			print()
+			print('Telegram Message (HTML format):')
+			print(f'┌{"─" * 78}┐')
+			for line in entry['message'].split('\n'):
+				print(f'│ {line:<76} │')
+			print(f'└{"─" * 78}┘')
+			print()
+	else:
 		print('ℹ️ No messages would be sent to Telegram from this log file.')
-		return
-
-	# Display all messages
-	print('=' * 80)
-	print(f'📱 TELEGRAM MESSAGES ({telegram_messages} total)')
-	print('=' * 80)
-	print()
-
-	for idx, entry in enumerate(entries, 1):
-		print(f'{"─" * 80}')
-		print(f'Message #{idx} (from line {entry["line_num"]})')
-		print(f'{"─" * 80}')
-
-		parsed = entry['parsed']
-		print(f'📍 Mode: {parsed.mode}')
-		print(f'📍 Callsign: {parsed.callsign}')
-		print(f'📍 Destination: {parsed.destination}')
-		print(f'📍 Timestamp: {parsed.timestamp}')
-		print(f'📍 Network: {"Yes" if parsed.is_network else "No (RF)"}')
-		print()
-		print('Telegram Message (HTML format):')
-		print('┌' + '─' * 78 + '┐')
-		for line in entry['message'].split('\n'):
-			print(f'│ {line:<76} │')
-		print('└' + '─' * 78 + '┘')
 		print()
 
-	print('=' * 80)
+	print(f'{"=" * 80}')
 	print('✅ Processing complete!')
-	print('=' * 80)
+	print(f'{"=" * 80}')
 
 
 def main():
@@ -269,7 +256,9 @@ def main():
 	if args.test:
 		run_unit_tests()
 	elif args.logfile:
-		process_log_file(args.logfile, ignore_time_messages=not args.include_time)
+		entries, stats = process_log_file(args.logfile, ignore_time_messages=not args.include_time)
+		if stats:
+			display_processed_results(entries, stats, args.logfile)
 	else:
 		parser.print_help()
 		sys.exit(1)
