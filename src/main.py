@@ -21,6 +21,7 @@ from typing import Optional
 
 import humanize
 from country_codes import COUNTRY_CODES
+from mcc_codes import MCC_CODES
 from dotenv import load_dotenv
 from telegram.ext import Application as TelegramApplication
 from telegram.ext import ApplicationBuilder
@@ -174,6 +175,13 @@ def get_country_code(country_name: str) -> str:
 	return code if code else ''
 
 
+def get_flag_emoji(country_code: str) -> str:
+	"""Converts a two-letter country code to a flag emoji."""
+	if country_code and len(country_code) == 2:
+		return ''.join(chr(ord(c) + 127397) for c in country_code.upper())
+	return '🌐'
+
+
 def read_talkgroup_file(file_path: str, delimiter: str, id_idx: int, name_idx: int, tg_map: dict, suffix: str = '', overwrite: bool = True):
 	"""Helper to read a talkgroup file and update the map."""
 	if not os.path.isfile(file_path):
@@ -206,6 +214,7 @@ def get_talkgroup_ids() -> dict:
 	"""Reads and caches the talkgroup list from files, reloading if files change."""
 	global _TALKGROUP_CACHE
 	file_configs = [
+		('/usr/local/etc/TGList_BM.txt', ';', 0, 2),
 		('/usr/local/etc/TGList_TGIF.txt', ';', 0, 1),
 		('/usr/local/etc/TGList_FreeStarIPSC.txt', ',', 0, 1),
 		('/usr/local/etc/TGList_SystemX.txt', ',', 0, 1),
@@ -216,7 +225,6 @@ def get_talkgroup_ids() -> dict:
 		('/usr/local/etc/TGList_AmComm.txt', ',', 0, 1),
 		('/usr/local/etc/TGList_NXDN.txt', ';', 0, 1),
 		('/usr/local/etc/TGList_P25.txt', ';', 0, 1),
-		('/usr/local/etc/TGList_BM.txt', ';', 0, 2),
 		('/usr/local/etc/groups.txt', ' ', 0, 1),
 	]
 
@@ -224,7 +232,7 @@ def get_talkgroup_ids() -> dict:
 	get_dmrgateway_rules()
 	dmr_networks = _DMRGATEWAY_CACHE.get('networks', [])
 	for net in dmr_networks:
-		name_clean = net.rstrip('_')
+		name_clean = net.split('_')[0]
 		fpath = f'/usr/local/etc/TGList_{name_clean}.txt'
 		# BM usually uses index 2 for name, others 1
 		name_idx = 2 if 'BM' in name_clean else 1
@@ -271,12 +279,18 @@ def get_talkgroup_ids() -> dict:
 			name_part = os.path.splitext(filename)[0]
 			suffix = name_part[7:] if name_part.startswith('TGList_') else name_part
 			read_talkgroup_file(tg_file, ';', 0, 1, tg_map, suffix=suffix, overwrite=False)
-	tg_map['4000'] = 'Disconnect'
-	tg_map['9990'] = 'Parrot'
-	tg_map['999'] = 'Message'
-	for i in range(1, 10):
-		tg_map[f'{i}004000'] = 'Disconnect'
-		tg_map[f'{i}009990'] = 'Parrot'
+	rules = get_dmrgateway_rules()
+	for rule in rules:
+		if rule.get('type') == 'TG':
+			for target_tg, label in [(4000, 'Disconnect'), (9990, 'Parrot')]:
+				src_tg = target_tg - rule['offset']
+				if rule['start'] <= src_tg <= rule['end']:
+					tg_map[str(src_tg)] = label
+	for mcc in MCC_CODES:
+		country, _ = MCC_CODES[mcc]
+		tg_map[f'{mcc}990'] = f'{country} Text Message'
+		tg_map[f'{mcc}997'] = f'{country} Parrot'
+		tg_map[f'{mcc}999'] = f'{country} ARS/RRS/GPS'
 	_TALKGROUP_CACHE = {'mtimes': current_mtimes, 'tg_map': tg_map}
 	return tg_map
 
@@ -692,6 +706,11 @@ class MMDVMLogLine:
 					remapped_id = tg_id + rule['offset']
 					name = f'{rule["name"]}: {remapped_id}'
 					break
+			if not name and len(tg_id_str) > 3:
+				mcc = int(tg_id_str[:3])
+				if mcc in MCC_CODES:
+					_, code = MCC_CODES[mcc]
+					name = f'{get_flag_emoji(code)} {code}'
 		if name:
 			tg_name = f' ({name})'
 		return tg_name
@@ -704,11 +723,14 @@ class MMDVMLogLine:
 		if user_info:
 			fname, country = user_info
 			code = get_country_code(country)
-			if code:
-				flag = ''.join(chr(ord(c) + 127397) for c in code.upper())
-				caller = f' ({fname}) [{flag} {code}]'
-			else:
-				caller = f' ({fname}) [{country}]'
+			flag = get_flag_emoji(code)
+			label = code if code else country
+			caller = f' ({fname}) [{flag} {label}]'
+		elif self.callsign.isdigit() and len(self.callsign) >= 3:
+			mcc = int(self.callsign[:3])
+			if mcc in MCC_CODES:
+				_, code = MCC_CODES[mcc]
+				caller = f' [{get_flag_emoji(code)} {code}]'
 		return caller
 
 	def get_telegram_message(self) -> str:
