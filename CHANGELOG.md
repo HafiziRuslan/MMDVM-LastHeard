@@ -2,9 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
-## [beta5] - (2026-03-06T00:17:05+08:00)
+## [beta5] - (2026-03-06T01:14:13+08:00)
 
-- 31 commit(s) contributed to the release.
+- 33 commit(s) contributed to the release.
 - 8 day(s) passed between the first and last commit.
 - 9 day(s) passed between releases.
 
@@ -20,6 +20,7 @@ All notable changes to this project will be documented in this file.
 
 ### 🐛 Bug Fixes in beta5
 
+- [c83459a](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/c83459a394b36ec77bb88ff0634f4f93de771423) style(main.sh): improve logging and minor formatting *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-06T01:14:13+08:00*
 - [e99ac3a](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/e99ac3a57a68d7e4a6ef3aab9cb8b1050e75f2f8) fix(deps): update uv and python-dotenv versions *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-04T22:25:06+08:00*
 - [287ba9c](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/287ba9c9473c824b4fd7edafe897cb0d5c5e99d2) fix(config): update repository urls *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-04T11:57:19+08:00*
 - [82ef3eb](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/82ef3ebca8b1abe118872a0e8b9f4bfb72320bac) refactor(imports): move MCC_CODES import after load_dotenv *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-04T08:23:05+08:00*
@@ -29,6 +30,7 @@ All notable changes to this project will be documented in this file.
 
 ### 💼 Other in beta5
 
+- [700d578](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/700d57858c708b2a07e592fd5777a79492d342c7) Add workflow to clear and purge caches *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-06T01:10:44+08:00*
 - [1f968c6](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/1f968c65931e417c75c684659f53ec7208288eb9) Update issue templates *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-01T01:22:50+08:00*
 - [4030e36](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/4030e36cee998736a24a8e75f0ec5d08a046c24d) Modify changelog commit message format *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-01T01:21:53+08:00*
 - [65e6863](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/65e6863e86d938675212d4c51dd2326f07d1266f) Add Contributor Covenant Code of Conduct *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-01T01:18:52+08:00*
@@ -375,4 +377,4 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-generated using git-cliff at 2026-03-06T00:18:46.216082759+08:00
+generated using git-cliff at 2026-03-06T01:39:27.273659317+08:00
