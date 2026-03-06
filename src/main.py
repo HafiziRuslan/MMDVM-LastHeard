@@ -529,6 +529,7 @@ class MMDVMLogLine:
 				obj.packet_loss = int(match.group('packet_loss'))
 			else:
 				obj.rssi3 = int(match.group('rssi3'))
+				obj._format_rssi_string()
 			return obj
 		return None
 
@@ -622,29 +623,32 @@ class MMDVMLogLine:
 		else:
 			self.url = f'https://www.qrz.com/db/{lookup_call}'
 
+	def _format_rssi_string(self):
+		"""Formats the RSSI string."""
+		if self.rssi3 >= -93:
+			s_meter = '🟢S9'
+		elif -99 <= self.rssi3 < -93:
+			s_meter = '🟢S8'
+		elif -105 <= self.rssi3 < -99:
+			s_meter = '🟢S7'
+		elif -111 <= self.rssi3 < -105:
+			s_meter = '🟠S6'
+		elif -117 <= self.rssi3 < -111:
+			s_meter = '🟠S5'
+		elif -123 <= self.rssi3 < -117:
+			s_meter = '🟠S4'
+		elif -129 <= self.rssi3 < -123:
+			s_meter = '🟡S3'
+		elif -135 <= self.rssi3 < -129:
+			s_meter = '🟡S2'
+		elif -141 <= self.rssi3 < -135:
+			s_meter = '🔴S1'
+		else:
+			s_meter = '🔴S0'
+		self.rssi = f'{s_meter} ({self.rssi3}dBm)'
+
 	def __str__(self):
 		"""Returns a string representation of the log line."""
-		if self.rssi3 >= -93:
-			self.rssi = '🟢S9'
-		elif -99 <= self.rssi3 < -93:
-			self.rssi = '🟢S8'
-		elif -105 <= self.rssi3 < -99:
-			self.rssi = '🟢S7'
-		elif -111 <= self.rssi3 < -105:
-			self.rssi = '🟠S6'
-		elif -117 <= self.rssi3 < -111:
-			self.rssi = '🟠S5'
-		elif -123 <= self.rssi3 < -117:
-			self.rssi = '🟠S4'
-		elif -129 <= self.rssi3 < -123:
-			self.rssi = '🟡S3'
-		elif -135 <= self.rssi3 < -129:
-			self.rssi = '🟡S2'
-		elif -141 <= self.rssi3 < -135:
-			self.rssi = '🔴S1'
-		else:
-			self.rssi = '🔴S0'
-		self.rssi += f'+{93 + self.rssi3}dB ({self.rssi3}dBm)'
 		self.is_kerchunk = True if self.duration < 2 else False
 		base = f'Timestamp: {self.timestamp}, Mode: {self.mode}, Callsign: {self.callsign}, Destination: {self.destination}'
 		if self.mode == 'DMR' or self.mode == 'DMR-D':
