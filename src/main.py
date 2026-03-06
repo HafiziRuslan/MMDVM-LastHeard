@@ -549,7 +549,7 @@ class MMDVMLogLine:
 	# 		obj.block = int(match.group('block'))
 	# 		return obj
 	# 	return None
- 
+
 	@classmethod
 	def _parse_dstar(cls, logline: str) -> Optional['MMDVMLogLine']:
 		match = cls.DSTAR_PATTERN.match(logline)
@@ -727,48 +727,48 @@ class MMDVMLogLine:
 			mode_icon = '📟'
 		else:
 			mode_icon = '📶'
-		message = f'{mode_icon} <b>Mode</b>: {self.mode}'
+		message = f'{mode_icon} Mode: <b>{self.mode}</b>'
 		if self.mode == 'DMR' or self.mode == 'DMR-D':
 			message += f' (Slot {self.slot})'
-		message += f'\n🕒 <b>Time</b>: {datetime.strftime(self.timestamp.replace(tzinfo=dt.timezone.utc), "%d-%b-%Y %H:%M:%S %Z") if self.timestamp else dt.datetime.now(dt.timezone.utc).strftime("%d-%b-%Y %H:%M:%S %Z")}'
+		time = (self.timestamp.replace(tzinfo=dt.timezone.utc) or dt.datetime.now()).astimezone().isoformat()
+		message += f'\n🕒 Time: <b>{time}</b>'
 		if self.url:
-			message += f'\n📡 <b>Caller</b>: <a href="{self.url}">{self.callsign}</a>{self.get_caller_location()}'
+			message += f'\n📡 Caller: <b><a href="{self.url}">{self.callsign}</a>{self.get_caller_location()}</b>'
 		else:
-			message += f'\n📡 <b>Caller</b>: {self.callsign}{self.get_caller_location()}'
-		message += f'\n🎯 <b>Target</b>: {self.destination}{self.get_talkgroup_name()}'
-		message += f' [{"RF" if not self.is_network else "NET"}]'
+			message += f'\n📡 Caller: <b>{self.callsign}{self.get_caller_location()}</b>'
+		message += f'\n🎯 Target: <b>{self.destination}{self.get_talkgroup_name()} [{"RF" if not self.is_network else "NET"}]</b>'
 		if self.is_voice:
-			message += '\n🗣️ <b>Type</b>: Voice'
+			message += '\n🗣️ Type: <b>Voice</b>'
 			if self.is_kerchunk:
 				message += ' (Kerchunk)'
 			else:
 				message += (
-					f'\n⏰ <b>Duration</b>: {humanize.precisedelta(dt.timedelta(seconds=self.duration), minimum_unit="seconds", format="%0.0f")}'
+					f'\n⏰ Duration: <b>{humanize.precisedelta(dt.timedelta(seconds=self.duration), minimum_unit="seconds", format="%0.0f")}</b>'
 				)
 				if self.ber > 0:
-					message += f'\n📊 <b>BER</b>: {self.ber}%'
+					message += f'\n📊 BER: <b>{self.ber}%</b>'
 				if self.is_network:
 					if self.packet_loss > 0:
-						message += f'\n📈 <b>PL</b>: {self.packet_loss}%'
+						message += f'\n📈 PL: <b>{self.packet_loss}%</b>'
 				else:
-					message += f'\n📶 <b>RSSI</b>: {self.rssi}'
+					message += f'\n📶 RSSI: <b>{self.rssi}</b>'
 		else:
-			message += f'\n💾 <b>Type</b>: Data {self.data_type.split()[-1].title()}'
+			message += f'\n💾 Type: <b>Data {self.data_type.split()[-1].title()}</b>'
 			if self.block > 0:
-				message += f'\n📦 <b>Blocks</b>: {self.block}'
+				message += f'\n📦 Blocks: <b>{self.block}</b>'
 		if self.is_watchdog:
-			message += '\n\n⚠️ <b>Warning</b>: Network watchdog expired'
+			message += '\n\n⚠️ Warning: <b>Network watchdog expired</b>'
 		if self.mode == 'D-Star':
 			if self.destination.startswith('CQCQCQ'):
-				message += '\n\n📢 <b>Action</b>: Call to all stations'
+				message += '\n\n📢 Action: <b>Call to all stations</b>'
 			elif self.destination.endswith('L'):
-				message += f'\n\n🔗 <b>Action</b>: Link to {self.destination[:-1]}'
+				message += f'\n\n🔗 Action: <b>Link to {self.destination[:-1]}</b>'
 			elif self.destination.endswith('U'):
-				message += '\n\n❌ <b>Action</b>: Unlink reflector'
+				message += '\n\n❌ Action: <b>Unlink reflector</b>'
 			elif self.destination.endswith('I'):
-				message += '\n\nℹ️ <b>Action</b>: Get repeater info'
+				message += '\n\nℹ️ Action: <b>Get repeater info</b>'
 			elif self.destination.endswith('E'):
-				message += '\n\n🔄 <b>Action</b>: Echo test'
+				message += '\n\n🔄 Action: <b>Echo test</b>'
 		return message
 
 
