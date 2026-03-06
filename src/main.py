@@ -625,25 +625,25 @@ class MMDVMLogLine:
 	def __str__(self):
 		"""Returns a string representation of the log line."""
 		if self.rssi3 >= -93:
-			self.rssi = '🟩S9'
+			self.rssi = '🟢S9'
 		elif -99 <= self.rssi3 < -93:
-			self.rssi = '🟩S8'
+			self.rssi = '🟢S8'
 		elif -105 <= self.rssi3 < -99:
-			self.rssi = '🟩S7'
+			self.rssi = '🟢S7'
 		elif -111 <= self.rssi3 < -105:
-			self.rssi = '🟨S6'
+			self.rssi = '🟠S6'
 		elif -117 <= self.rssi3 < -111:
-			self.rssi = '🟨S5'
+			self.rssi = '🟠S5'
 		elif -123 <= self.rssi3 < -117:
-			self.rssi = '🟨S4'
+			self.rssi = '🟠S4'
 		elif -129 <= self.rssi3 < -123:
-			self.rssi = '🟨S3'
+			self.rssi = '🟡S3'
 		elif -135 <= self.rssi3 < -129:
-			self.rssi = '🟥S2'
+			self.rssi = '🟡S2'
 		elif -141 <= self.rssi3 < -135:
-			self.rssi = '🟥S1'
+			self.rssi = '🔴S1'
 		else:
-			self.rssi = '🟥S0'
+			self.rssi = '🔴S0'
 		self.rssi += f'+{93 + self.rssi3}dB ({self.rssi3}dBm)'
 		self.is_kerchunk = True if self.duration < 2 else False
 		base = f'Timestamp: {self.timestamp}, Mode: {self.mode}, Callsign: {self.callsign}, Destination: {self.destination}'
