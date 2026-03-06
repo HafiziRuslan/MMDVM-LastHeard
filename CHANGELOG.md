@@ -2,9 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
-## [beta5] - (2026-03-06T20:33:16+08:00)
+## [beta5] - (2026-03-07T00:10:59+08:00)
 
-- 34 commit(s) contributed to the release.
+- 37 commit(s) contributed to the release.
 - 9 day(s) passed between the first and last commit.
 - 10 day(s) passed between releases.
 
@@ -20,6 +20,7 @@ All notable changes to this project will be documented in this file.
 
 ### 🐛 Bug Fixes in beta5
 
+- [0c1ec5e](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/0c1ec5e687a623a8c84871e8807f3be695e26d32) style(rssi): update RSSI indicator glyphs to colored circle icons *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-07T00:01:24+08:00*
 - [c83459a](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/c83459a394b36ec77bb88ff0634f4f93de771423) style(main.sh): improve logging and minor formatting *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-06T01:14:13+08:00*
 - [e99ac3a](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/e99ac3a57a68d7e4a6ef3aab9cb8b1050e75f2f8) fix(deps): update uv and python-dotenv versions *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-04T22:25:06+08:00*
 - [287ba9c](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/287ba9c9473c824b4fd7edafe897cb0d5c5e99d2) fix(config): update repository urls *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-04T11:57:19+08:00*
@@ -37,6 +38,8 @@ All notable changes to this project will be documented in this file.
 
 ### 🚜 Refactor in beta5
 
+- [cbdb71a](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/cbdb71a88a7620d7efb0a99389d68a1c30afc7d3) refactor(main): factor RSSI formatting into _format_rssi_string and invoke during DMR voice parsing; update string formatting to use a single self.rssi representation *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-07T00:10:59+08:00*
+- [ae48322](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/ae483227b93a4b49e8d2ee55cfe2d2392932bf64) refactor(telegram): standardize and improve formatting of telegram message output *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-06T23:57:39+08:00*
 - [84bead8](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/84bead8f75a7e4512a6dd2504186353d00778996) refactor(main): add blank line before _parse_dstar method *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-06T20:33:16+08:00*
 - [f0c3120](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/f0c31200c16b53264801379057ab728ebb1da3c1) refactor(main.sh): improve notification handling and error checking *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-04T09:56:46+08:00*
 - [71453c5](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/71453c54594179717fbe897791c7d72aeaa25b10) refactor(main): replace uv cache clean with uv tool run pyclean in sync_dependencies *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-04T09:39:37+08:00*
@@ -378,4 +381,4 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-generated using git-cliff at 2026-03-06T21:17:34.119377835+08:00
+generated using git-cliff at 2026-03-07T00:11:33.569021723+08:00
