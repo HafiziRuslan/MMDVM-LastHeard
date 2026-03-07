@@ -2,11 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
-## [beta5] - (2026-03-07T00:10:59+08:00)
+## [beta5] - (2026-03-07T13:50:36+08:00)
 
-- 37 commit(s) contributed to the release.
-- 9 day(s) passed between the first and last commit.
-- 10 day(s) passed between releases.
+- 38 commit(s) contributed to the release.
+- 10 day(s) passed between the first and last commit.
+- 11 day(s) passed between releases.
 
 ### 🚀 Features in beta5
 
@@ -20,6 +20,7 @@ All notable changes to this project will be documented in this file.
 
 ### 🐛 Bug Fixes in beta5
 
+- [fdcc509](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/fdcc5099cd0bb6dec18dd401748161d609b48c77) fix(supply-chain): update SBOM with latest tool versions and timestamps *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-07T13:50:36+08:00*
 - [0c1ec5e](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/0c1ec5e687a623a8c84871e8807f3be695e26d32) style(rssi): update RSSI indicator glyphs to colored circle icons *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-07T00:01:24+08:00*
 - [c83459a](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/c83459a394b36ec77bb88ff0634f4f93de771423) style(main.sh): improve logging and minor formatting *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-06T01:14:13+08:00*
 - [e99ac3a](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/e99ac3a57a68d7e4a6ef3aab9cb8b1050e75f2f8) fix(deps): update uv and python-dotenv versions *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-04T22:25:06+08:00*
@@ -381,4 +382,4 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-generated using git-cliff at 2026-03-07T00:11:33.569021723+08:00
+generated using git-cliff at 2026-03-07T13:51:19.296754760+08:00
