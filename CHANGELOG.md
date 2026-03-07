@@ -2,14 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
-## [beta5] - (2026-03-08T01:20:05+08:00)
+## [beta5] - (2026-03-08T02:07:37+08:00)
 
-- 41 commit(s) contributed to the release.
+- 42 commit(s) contributed to the release.
 - 10 day(s) passed between the first and last commit.
 - 11 day(s) passed between releases.
 
 ### 🚀 Features in beta5
 
+- [f8ab065](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/f8ab065ce86fd0306d9537c4d0466b208fc5a3d5) refactor(main): remove Telegram notification support and associated test *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-08T02:07:37+08:00*
 - [3b72b43](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/3b72b4337e4d955280cf74f9be8a823ccd36a1b9) feat(logging): use ISO8601Formatter for timestamps in configure_logging *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-06T00:17:05+08:00*
 - [9b25681](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/9b25681472c4ad9315552bb9d132a5f128d87fa8) feat(main): add MCC-based flag emoji support and dynamic talkgroup mapping *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-04T08:10:43+08:00*
 - [6fec89f](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/6fec89fc227d45ece58296aa1ae21e8872c47adb) feat(mcc-codes): add MCC_CODES mapping for MCC to country and ISO code *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-04T08:09:27+08:00*
@@ -388,4 +389,4 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-generated using git-cliff at 2026-03-08T01:20:42.331448713+08:00
+generated using git-cliff at 2026-03-08T02:08:04.639286751+08:00
