@@ -2,9 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
-## [beta5] - (2026-03-09T19:25:36+08:00)
+## [beta5] - (2026-03-09T19:50:56+08:00)
 
-- 43 commit(s) contributed to the release.
+- 44 commit(s) contributed to the release.
 - 12 day(s) passed between the first and last commit.
 - 13 day(s) passed between releases.
 
@@ -22,6 +22,7 @@ All notable changes to this project will be documented in this file.
 
 ### 🐛 Bug Fixes in beta5
 
+- [6159468](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/61594681cba4c7d5b40bbf36c634dc89433a7a14) fix(main): require 7-digit callsign before MCC code lookup *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-09T19:50:56+08:00*
 - [fdcc509](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/fdcc5099cd0bb6dec18dd401748161d609b48c77) fix(supply-chain): update SBOM with latest tool versions and timestamps *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-07T13:50:36+08:00*
 - [0c1ec5e](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/0c1ec5e687a623a8c84871e8807f3be695e26d32) style(rssi): update RSSI indicator glyphs to colored circle icons *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-07T00:01:24+08:00*
 - [c83459a](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/c83459a394b36ec77bb88ff0634f4f93de771423) style(main.sh): improve logging and minor formatting *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-06T01:14:13+08:00*
@@ -390,4 +391,4 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-generated using git-cliff at 2026-03-09T19:26:01.101836635+08:00
+generated using git-cliff at 2026-03-09T20:58:11.812435666+08:00
