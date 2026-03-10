@@ -166,7 +166,7 @@ update_repository() {
       if [ "$UPDATE_SUCCESS" = true ] && [ "$(sudo -u "$dir_own" git rev-parse HEAD)" = "$REMOTE" ]; then
         if ! sudo -u "$dir_own" git diff --quiet "$LOCAL" HEAD -- pyproject.toml; then
           log_msg INFO "Application updated. Forcing environment recreation."
-          rm -rf .venv
+          sudo -u "$dir_own" uv venv --clear
         fi
 
         log_msg INFO "Verifying repository integrity..."
@@ -281,12 +281,13 @@ main() {
     update_repository
   fi
 
+  manage_venv
+
   if [ ! -f .env ]; then
     log_msg ERROR "❌ .env file not found! Please copy .env.sample to .env and configure it."
     exit 1
   fi
 
-  manage_venv
   run_application
 }
 
