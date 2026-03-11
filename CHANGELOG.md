@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1b6] - (2026-03-12T04:11:53+08:00)
+
+- 1 commit(s) contributed to the release.
+
+### 🚀 Features in 0.1b6
+
+- [1b3c30b](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/1b3c30bb603f730211d5bd95023be936e4b5c23a) feat(ci): automate release workflow with dynamic versioning and tagging *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-12T04:11:53+08:00*
+
+---
+
 ## [beta6] - (2026-03-12T01:44:25+08:00)
 
 - 8 commit(s) contributed to the release.
@@ -422,4 +432,4 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-generated using git-cliff at 2026-03-12T01:45:04.433731778+08:00
+generated using git-cliff at 2026-03-12T04:12:48.120749622+08:00
