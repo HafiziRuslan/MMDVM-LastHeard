@@ -2,9 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
-## [beta6] - (2026-03-12T01:30:59+08:00)
+## [beta6] - (2026-03-12T01:44:25+08:00)
 
-- 7 commit(s) contributed to the release.
+- 8 commit(s) contributed to the release.
 - 2 day(s) passed between the first and last commit.
 - 2 day(s) passed between releases.
 
@@ -22,6 +22,10 @@ All notable changes to this project will be documented in this file.
 - [2fd5e17](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/2fd5e1761262201abbbb792c2888d7bfb3f2b8b7) refactor(main): improve virtual environment handling and execution order *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-11T03:39:16+08:00*
 - [2d5eda8](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/2d5eda81f302074052a8053f32b196f43ef765c9) refactor(main.sh): overhaul script with structured initialization, logging, preflight checks, dependency management, repo sync, venv handling, and resilient runner *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-11T03:22:31+08:00*
 - [76e6229](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/76e6229daf33ebc8c0a93eb071d15a3464534563) refactor(app): modularize core components and introduce data-driven architecture for logging, config, and Telegram integration *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-09T21:20:17+08:00*
+
+### 📚 Documentation in beta6
+
+- [faa51df](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/faa51dfcce5ba247fe9089049fba25838f10bd00) docs: update README with donation link and mirror links reorganization *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-12T01:44:25+08:00*
 
 ### ⚙️ Miscellaneous Tasks in beta6
 
@@ -418,4 +422,4 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-generated using git-cliff at 2026-03-12T01:31:22.371276492+08:00
+generated using git-cliff at 2026-03-12T01:45:04.433731778+08:00
