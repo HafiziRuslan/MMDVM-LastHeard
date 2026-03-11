@@ -2,16 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
-## [beta6] - (2026-03-11T03:39:16+08:00)
+## [beta6] - (2026-03-12T01:30:59+08:00)
 
-- 6 commit(s) contributed to the release.
-- 1 day(s) passed between the first and last commit.
-- 1 day(s) passed between releases.
+- 7 commit(s) contributed to the release.
+- 2 day(s) passed between the first and last commit.
+- 2 day(s) passed between releases.
 
 ### 🚀 Features in beta6
 
 - [efa3718](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/efa37183e8533391c12457af14335e49847a5b3e) feat(main): bootstrap apt dependencies, add command_exists, auto-install uv when online, and use uv venv --clear for cleanup *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-11T03:12:35+08:00*
 - [056a036](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/056a03675d9c4ec6cd0b5e0413da1ef758fe5a14) feat(user): extend UserManager to load user data from user.csv and DMRIds.dat with per-source caches and fallback *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-09T21:46:36+08:00*
+
+### 💼 Other in beta6
+
+- [cd27612](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/cd276126046778fb0c590082261ae38064b2f8b6) Update funding sources in FUNDING.yml *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-12T01:30:59+08:00*
 
 ### 🚜 Refactor in beta6
 
@@ -414,4 +418,4 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-generated using git-cliff at 2026-03-11T06:38:32.774205222+08:00
+generated using git-cliff at 2026-03-12T01:31:22.371276492+08:00
