@@ -1,4 +1,3 @@
-
 # Created by https://www.toptal.com/developers/gitignore/api/dotenv,python,pythonvanilla,venv,virtualenv,visualstudiocode,windows
 # Edit at https://www.toptal.com/developers/gitignore?templates=dotenv,python,pythonvanilla,venv,virtualenv,visualstudiocode,windows
 
@@ -266,5 +265,5 @@ $RECYCLE.BIN/
 
 # End of https://www.toptal.com/developers/gitignore/api/dotenv,python,pythonvanilla,venv,virtualenv,visualstudiocode,windows
 
-.archive/
-sample/
+.*/
+!.github/
