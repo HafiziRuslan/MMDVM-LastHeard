@@ -2,9 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
-## [beta6] - (2026-03-12T16:57:15+08:00)
+## [beta6] - (2026-03-12T17:58:17+08:00)
 
-- 15 commit(s) contributed to the release.
+- 16 commit(s) contributed to the release.
 - 3 day(s) passed between the first and last commit.
 - 3 day(s) passed between releases.
 
@@ -24,6 +24,7 @@ All notable changes to this project will be documented in this file.
 
 ### 🚜 Refactor in beta6
 
+- [71680ac](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/71680aca9a8f7c130a6b628f227629575adb7829) refactor(datetime): add milliseconds precision to timestamp formatting *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-12T17:58:17+08:00*
 - [6ecb0e6](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/6ecb0e6eea0827ac8540480ce8b91b6fd66f902f) refactor(module): optimize module structure and improve code clarity *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-12T16:57:15+08:00*
 - [f34eaa7](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/f34eaa781575842eea92628beb3a3d20e73fab26) refactor(release): simplify version parsing logic for dynamic tags *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-12T04:19:56+08:00*
 - [2fd5e17](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/2fd5e1761262201abbbb792c2888d7bfb3f2b8b7) refactor(main): improve virtual environment handling and execution order *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-11T03:39:16+08:00*
@@ -432,4 +433,4 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-generated using git-cliff at 2026-03-12T16:58:00.774794759+08:00
+generated using git-cliff at 2026-03-12T17:59:10.726337046+08:00
