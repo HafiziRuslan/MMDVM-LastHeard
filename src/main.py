@@ -858,7 +858,7 @@ class MMDVMLogLine:
 		message = f'{mode_icon} Mode: <b>{self.mode}</b>'
 		if self.mode == 'DMR' or self.mode == 'DMR-D':
 			message += f' (Slot {self.slot})'
-		time = (self.timestamp.replace(tzinfo=dt.timezone.utc) or dt.datetime.now()).astimezone().isoformat()
+		time = (self.timestamp.replace(tzinfo=dt.timezone.utc) or dt.datetime.now()).astimezone().isoformat(timespec='milliseconds')
 		message += f'\n🕒 Time: <b>{time}</b>'
 		if self.url:
 			message += f'\n📡 Caller: <b><a href="{self.url}">{self.callsign}</a>{self.get_caller_location()}</b>'
