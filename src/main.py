@@ -112,15 +112,15 @@ class LoggingManager:
 		logger.addHandler(console_handler)
 
 		levels = {
-			logging.DEBUG: 'debug.log',
-			logging.INFO: 'info.log',
-			logging.WARNING: 'warning.log',
-			logging.ERROR: 'error.log',
-			logging.CRITICAL: 'critical.log',
+			logging.DEBUG: '1-debug.log',
+			logging.INFO: '2-info.log',
+			logging.WARNING: '3-warning.log',
+			logging.ERROR: '4-error.log',
+			logging.CRITICAL: '5-critical.log',
 		}
 		for level, filename in levels.items():
 			try:
-				handler = self.NumberedRotatingFileHandler(os.path.join(self.log_dir, filename), maxBytes=1 * 1024 * 1024, backupCount=5)
+				handler = self.NumberedRotatingFileHandler(os.path.join(self.log_dir, filename), maxBytes=1.5 * 1000 * 1000, backupCount=5)
 				handler.setLevel(level)
 				handler.addFilter(self.LevelFilter(level))
 				handler.setFormatter(formatter)
