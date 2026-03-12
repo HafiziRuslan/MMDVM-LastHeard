@@ -522,3 +522,622 @@ class UserManager:
 				logging.error('Error reading user file %s: %s', self._dmr_ids_path, e)
 				break
 		return {}
+
+class LogFileReader:
+	"""Handles finding and reading MMDVM log files."""
+
+	def __init__(self):
+		self.log_dir = self._find_log_dir()
+
+	def _find_log_dir(self) -> str:
+		"""Reads the MMDVMHost configuration to find the log directory."""
+		conf_files = ['/etc/mmdvmhost', '/etc/MMDVM.ini', '/opt/MMDVMHost/MMDVM.ini']
+		for conf_file in conf_files:
+			if os.path.isfile(conf_file):
+				try:
+					config = configparser.ConfigParser()
+					config.read(conf_file)
+					if config.has_section('Log') and config.has_option('Log', 'FilePath'):
+						log_dir = config.get('Log', 'FilePath')
+						if os.path.isdir(log_dir):
+							return log_dir
+				except Exception:
+					pass
+		default_dirs = ['/var/log/pi-star', '/var/log/mmdvm', '/var/log/MMDVMHost']
+		for log_dir in default_dirs:
+			if os.path.isdir(log_dir):
+				return log_dir
+		return '/var/log/pi-star'
+
+	def get_latest_log_path(self) -> Optional[str]:
+		"""Finds and returns the path to the most recent MMDVM log file."""
+		log_files = glob.glob(os.path.join(self.log_dir, 'MMDVM-*.log'))
+		if not log_files:
+			return None
+		log_files.sort(key=os.path.getmtime, reverse=True)
+		latest_log = log_files[0]
+		# logging.debug('Latest MMDVM log file: %s', latest_log)
+		return latest_log
+
+	@staticmethod
+	def get_last_line(file_path: str) -> str:
+		"""Reads the last line of a file using seek for performance."""
+		try:
+			with open(file_path, 'rb') as f:
+				try:
+					f.seek(-4096, os.SEEK_END)
+				except OSError:
+					f.seek(0)
+				lines = f.readlines()
+				for line in reversed(lines):
+					decoded = line.decode('utf-8', errors='replace').strip()
+					if len(decoded) >= 10:
+						return decoded
+		except OSError as e:
+			logging.error('Error reading last line of file %s: %s', file_path, e)
+		return ''
+
+
+class DataManager:
+	"""Central manager for all data sources."""
+
+	def __init__(self):
+		self.dmr_gateway = DMRGatewayManager()
+		self.talkgroups = TalkgroupManager(self.dmr_gateway)
+		self.users = UserManager()
+		self.log_reader = LogFileReader()
+
+
+@dataclass
+class MMDVMLogLine:
+	timestamp: Optional[dt.datetime] = None
+	mode: str = ''
+	callsign: str = ''
+	destination: str = ''
+	data_type: str = ''
+	block: int = 0
+	duration: float = 0.0
+	packet_loss: int = 0
+	ber: float = 0.0
+	rssi: str = 'S0'
+	rssi1: int = 0
+	rssi2: int = 0
+	rssi3: int = 0
+	url: str = ''
+	slot: int = 2
+	is_voice: bool = True
+	is_kerchunk: bool = False
+	is_network: bool = True
+	is_watchdog: bool = False
+	data_manager: 'DataManager' = field(init=False, repr=False)
+	_TIMESTAMP = r'(?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d+)'
+	_SOURCE = r'(?P<source>network|RF)'
+	_CALLSIGN = r'from (?P<callsign>[\w\d\-/]+)'
+	_DMR_DESTINATION = r'to (?P<destination>(?:TG [\d\w]+)|[\d\w]+)'
+	_DSTAR_CALLSIGN = r'from (?P<callsign>[\w\d\s/]+)'
+	_DSTAR_DESTINATION = r'to (?P<destination>[\w\d\s]+)'
+	_YSF_DESTINATION = r'to DG-ID (?P<dgid>\d+)'
+	_DURATION = r'(?P<duration>[\d\.]+) seconds'
+	_PACKET_LOSS = r'(?P<packet_loss>[\d\.]+)% packet loss'
+	_BER = r'BER: (?P<ber>[\d\.]+)%'
+	_RSSI = r'RSSI: (?P<rssi1>-[\d]+)/(?P<rssi2>-[\d]+)/(?P<rssi3>-[\d]+) dBm'
+	DMR_GW_PATTERN = re.compile(
+		rf'^M: {_TIMESTAMP} DMR Slot (?P<slot>\d), received (?P<source>network) '
+		r'(?:late entry|voice header|end of voice transmission) '
+		rf'{_CALLSIGN} {_DMR_DESTINATION}'
+		rf'(?:, {_DURATION}, {_PACKET_LOSS}, {_BER})'
+	)
+	DMR_RF_PATTERN = re.compile(
+		rf'^M: {_TIMESTAMP} DMR Slot (?P<slot>\d), received (?P<source>RF) '
+		r'(?:late entry|voice header|end of voice transmission) '
+		rf'{_CALLSIGN} {_DMR_DESTINATION}'
+		rf'(?:, {_DURATION}, {_BER}, {_RSSI})'
+	)
+	# DMR_DATA_PATTERN = re.compile(
+	# 	rf'^M: {_TIMESTAMP} DMR Slot (?P<slot>\d), received {_SOURCE} data header from '
+	# 	rf'{_CALLSIGN} to {_DMR_DESTINATION}, (?P<block>[\d]+) blocks'
+	# )
+	DSTAR_PATTERN = re.compile(
+		rf'^M: {_TIMESTAMP} D-Star, (?:received )?{_SOURCE} end of transmission '
+		rf'{_DSTAR_CALLSIGN} {_DSTAR_DESTINATION}'
+		rf'(?:, | , ){_DURATION},\s+{_PACKET_LOSS}, {_BER}'
+	)
+	DSTAR_WATCHDOG_PATTERN = re.compile(
+		rf'^M: {_TIMESTAMP} D-Star, {_SOURCE} watchdog has expired, '
+		rf'{_DURATION},\s+{_PACKET_LOSS}, {_BER}'
+	)
+	YSF_PATTERN = re.compile(
+		rf'^M: {_TIMESTAMP} YSF, received {_SOURCE} end of transmission '
+		rf'{_CALLSIGN} {_YSF_DESTINATION}, '
+		rf'{_DURATION}, {_PACKET_LOSS}, {_BER}'
+	)
+	YSF_NETWORK_DATA_PATTERN = re.compile(
+		rf'^M: {_TIMESTAMP} YSF, received network data '
+		rf'{_CALLSIGN}\s+{_YSF_DESTINATION} at (?P<location>\S+)'
+	)
+
+	@classmethod
+	def from_logline(cls, logline: str, data_manager: 'DataManager') -> 'MMDVMLogLine':
+		"""Factory method to create an MMDVMLogLine instance from a log line."""
+		parsers = [
+			cls._parse_dmr_voice,
+			# cls._parse_dmr_data,
+			cls._parse_dstar,
+			cls._parse_dstar_watchdog,
+			cls._parse_ysf,
+			cls._parse_ysf_network_data,
+		]
+		for parser in parsers:
+			instance = parser(logline)
+			if instance:
+				instance.data_manager = data_manager
+				return instance
+		raise ValueError(f'Log line does not match expected format: {logline}')
+
+	@classmethod
+	def _parse_dmr_voice(cls, logline: str) -> Optional['MMDVMLogLine']:
+		"""Parses a DMR voice transmission log line."""
+		match = cls.DMR_GW_PATTERN.match(logline) or cls.DMR_RF_PATTERN.match(logline)
+		if match:
+			obj = cls()
+			obj.mode = 'DMR'
+			obj.timestamp = dt.datetime.strptime(match.group('timestamp'), '%Y-%m-%d %H:%M:%S.%f')
+			obj.slot = int(match.group('slot'))
+			obj.is_network = match.group('source') == 'network'
+			obj.callsign = match.group('callsign').strip()
+			obj.destination = match.group('destination').strip()
+			obj.duration = float(match.group('duration'))
+			obj.ber = float(match.group('ber'))
+			obj._set_url(obj.callsign)
+			if obj.is_network:
+				obj.packet_loss = int(match.group('packet_loss'))
+			else:
+				obj.rssi3 = int(match.group('rssi3'))
+				obj._format_rssi_string()
+			return obj
+		return None
+
+	# @classmethod
+	# def _parse_dmr_data(cls, logline: str) -> Optional['MMDVMLogLine']:
+	# 	"""Parses a DMR data transmission log line."""
+	# 	match = cls.DMR_DATA_PATTERN.match(logline)
+	# 	if match:
+	# 		obj = cls()
+	# 		obj.mode = 'DMR-D'
+	# 		obj.timestamp = dt.datetime.strptime(match.group('timestamp'), '%Y-%m-%d %H:%M:%S.%f')
+	# 		obj.slot = int(match.group('slot'))
+	# 		obj.is_network = match.group('source') == 'network'
+	# 		obj.is_voice = False
+	# 		obj.data_type = 'header'
+	# 		obj.callsign = match.group('callsign').strip()
+	# 		obj._set_url(obj.callsign)
+	# 		obj.destination = match.group('destination').strip()
+	# 		obj.block = int(match.group('block'))
+	# 		return obj
+	# 	return None
+
+	@classmethod
+	def _parse_dstar(cls, logline: str) -> Optional['MMDVMLogLine']:
+		"""Parses a D-Star transmission log line."""
+		match = cls.DSTAR_PATTERN.match(logline)
+		if match:
+			obj = cls()
+			obj.mode = 'D-Star'
+			obj.timestamp = dt.datetime.strptime(match.group('timestamp'), '%Y-%m-%d %H:%M:%S.%f')
+			obj.is_network = match.group('source') == 'network'
+			obj.callsign = Formatter.remove_double_spaces(match.group('callsign').strip())
+			obj.destination = match.group('destination').strip()
+			obj.duration = float(match.group('duration'))
+			obj.packet_loss = int(match.group('packet_loss'))
+			obj.ber = float(match.group('ber'))
+			obj._set_url(obj.callsign.split('/')[0].strip())
+			return obj
+		return None
+
+	@classmethod
+	def _parse_dstar_watchdog(cls, logline: str) -> Optional['MMDVMLogLine']:
+		"""Parses a D-Star watchdog log line."""
+		match = cls.DSTAR_WATCHDOG_PATTERN.match(logline)
+		if match:
+			obj = cls()
+			obj.mode = 'D-Star'
+			obj.timestamp = dt.datetime.strptime(match.group('timestamp'), '%Y-%m-%d %H:%M:%S.%f')
+			obj.is_network = match.group('source') == 'network'
+			obj.duration = float(match.group('duration'))
+			obj.packet_loss = int(match.group('packet_loss'))
+			obj.ber = float(match.group('ber'))
+			obj.is_watchdog = True
+			return obj
+		return None
+
+	@classmethod
+	def _parse_ysf(cls, logline: str) -> Optional['MMDVMLogLine']:
+		"""Parses a YSF transmission log line."""
+		match = cls.YSF_PATTERN.match(logline)
+		if match:
+			obj = cls()
+			obj.mode = 'YSF'
+			obj.timestamp = dt.datetime.strptime(match.group('timestamp'), '%Y-%m-%d %H:%M:%S.%f')
+			obj.is_network = match.group('source') == 'network'
+			obj.is_voice = True
+			obj.callsign = match.group('callsign').strip()
+			obj.destination = f'DG-ID {match.group("dgid")}'
+			obj.duration = float(match.group('duration'))
+			obj.packet_loss = int(match.group('packet_loss'))
+			obj.ber = float(match.group('ber'))
+			obj._set_url(obj.callsign.split('-')[0].strip())
+			return obj
+		return None
+
+	@classmethod
+	def _parse_ysf_network_data(cls, logline: str) -> Optional['MMDVMLogLine']:
+		"""Parses a YSF network data transmission log line."""
+		match = cls.YSF_NETWORK_DATA_PATTERN.match(logline)
+		if match:
+			obj = cls()
+			obj.mode = 'YSF-D'
+			obj.timestamp = dt.datetime.strptime(match.group('timestamp'), '%Y-%m-%d %H:%M:%S.%f')
+			obj.is_network = match.group('source') == 'network'
+			obj.is_voice = False
+			obj.callsign = match.group('callsign').strip()
+			obj.destination = f'DG-ID {match.group("dgid")} at {match.group("location").strip()}'
+			obj._set_url(obj.callsign.split('-')[0].strip())
+			return obj
+		return None
+
+	def _set_url(self, lookup_call: str):
+		"""Sets the URL based on the callsign."""
+		if lookup_call.isnumeric():
+			self.url = f'https://database.radioid.net/database/view?id={lookup_call}'
+		else:
+			self.url = f'https://www.qrz.com/db/{lookup_call}'
+
+	def _format_rssi_string(self):
+		"""Formats the RSSI string."""
+		if self.rssi3 >= -93:
+			s_meter = '🟢S9'
+		elif -99 <= self.rssi3 < -93:
+			s_meter = '🟢S8'
+		elif -105 <= self.rssi3 < -99:
+			s_meter = '🟢S7'
+		elif -111 <= self.rssi3 < -105:
+			s_meter = '🟠S6'
+		elif -117 <= self.rssi3 < -111:
+			s_meter = '🟠S5'
+		elif -123 <= self.rssi3 < -117:
+			s_meter = '🟠S4'
+		elif -129 <= self.rssi3 < -123:
+			s_meter = '🟡S3'
+		elif -135 <= self.rssi3 < -129:
+			s_meter = '🟡S2'
+		elif -141 <= self.rssi3 < -135:
+			s_meter = '🔴S1'
+		else:
+			s_meter = '🔴S0'
+		self.rssi = f'{s_meter} ({self.rssi3}dBm)'
+
+	def __str__(self):
+		"""Returns a string representation of the log line."""
+		self.is_kerchunk = True if self.duration < 2 else False
+		base = f'Timestamp: {self.timestamp}, Mode: {self.mode}, Callsign: {self.callsign}, Destination: {self.destination}'
+		if self.mode == 'DMR' or self.mode == 'DMR-D':
+			base += f', Slot: {self.slot}'
+			if self.is_voice:
+				base += ', Type: Voice'
+				if self.is_network:
+					base += ', Source: Network'
+					base += f', Duration: {self.duration}s, PL: {self.packet_loss}%, BER: {self.ber}%'
+				else:
+					base += ', Source: RF'
+					base += f', Duration: {self.duration}s, BER: {self.ber}%, RSSI: {self.rssi}'
+			else:
+				base += ', Type: Data'
+				if self.is_network:
+					base += ', Source: Network'
+				else:
+					base += ', Source: RF'
+				base += f', Blocks: {self.block}'
+		return base
+
+	def get_talkgroup_name(self) -> str:
+		"""Returns the talkgroup name based on the destination."""
+		tg_name = ''
+		is_group = self.destination.startswith('TG ')
+		tg_id_str = self.destination.split()[-1] if is_group else self.destination
+		tg_map = self.data_manager.talkgroups.get_map()
+		name = tg_map.get(tg_id_str)
+		if not name and tg_id_str.isdigit():
+			tg_id = int(tg_id_str)
+			rules = self.data_manager.dmr_gateway.get_rules()
+			required_type = 'TG' if is_group else 'PC'
+			for rule in rules:
+				if rule.get('type', 'TG') != required_type:
+					continue
+				if rule['slot'] != 0 and rule['slot'] != self.slot:
+					continue
+				if rule['start'] <= tg_id <= rule['end']:
+					remapped_id = tg_id + rule['offset']
+					name = f'{rule["name"]}: {remapped_id}'
+					break
+			if not name and len(tg_id_str) > 3:
+				mcc = int(tg_id_str[:3])
+				if mcc in MCC_CODES:
+					_, code = MCC_CODES[mcc]
+					name = f'{Formatter.get_flag_emoji(code)} {code}'
+		if name:
+			tg_name = f' ({name})'
+		return tg_name
+
+	def get_caller_location(self) -> str:
+		"""Returns the location of the caller based on the callsign."""
+		caller = ''
+		user_map = self.data_manager.users.get_map()
+		user_info = user_map.get(self.callsign)
+		if user_info:
+			call, fname, country = user_info
+			code = Formatter.get_country_code(country)
+			flag = Formatter.get_flag_emoji(code)
+			label = code if code else country
+			caller = f'~{call} ({fname}) [{flag} {label}]'
+		elif self.callsign.isdigit() and len(self.callsign) == 7:
+			mcc = int(self.callsign[:3])
+			if mcc in MCC_CODES:
+				_, code = MCC_CODES[mcc]
+				caller = f' [{Formatter.get_flag_emoji(code)} {code}]'
+		return caller
+
+	def get_telegram_message(self) -> str:
+		"""Returns a formatted message for Telegram with emojis."""
+		if self.mode == 'DMR':
+			mode_icon = '📻'
+		elif self.mode == 'DMR-D':
+			mode_icon = '📟'
+		elif self.mode == 'D-Star':
+			mode_icon = '⭐'
+		elif self.mode == 'YSF':
+			mode_icon = '📡'
+		elif self.mode == 'YSF-D':
+			mode_icon = '📟'
+		else:
+			mode_icon = '📶'
+		message = f'{mode_icon} Mode: <b>{self.mode}</b>'
+		if self.mode == 'DMR' or self.mode == 'DMR-D':
+			message += f' (Slot {self.slot})'
+		time = (self.timestamp.replace(tzinfo=dt.timezone.utc) or dt.datetime.now()).astimezone().isoformat(timespec='milliseconds')
+		message += f'\n🕒 Time: <b>{time}</b>'
+		if self.url:
+			message += f'\n📡 Caller: <b><a href="{self.url}">{self.callsign}</a>{self.get_caller_location()}</b>'
+		else:
+			message += f'\n📡 Caller: <b>{self.callsign}{self.get_caller_location()}</b>'
+		message += f'\n🎯 Target: <b>{self.destination}{self.get_talkgroup_name()} [{"RF" if not self.is_network else "NET"}]</b>'
+		if self.is_voice:
+			message += '\n🗣️ Type: <b>Voice</b>'
+			if self.is_kerchunk:
+				message += ' (Kerchunk)'
+			else:
+				message += (
+					f'\n⏰ Duration: <b>{humanize.precisedelta(dt.timedelta(seconds=self.duration), minimum_unit="seconds", format="%0.0f")}</b>'
+				)
+				if self.ber > 0:
+					message += f'\n📊 BER: <b>{self.ber}%</b>'
+				if self.is_network:
+					if self.packet_loss > 0:
+						message += f'\n📈 PL: <b>{self.packet_loss}%</b>'
+				else:
+					message += f'\n📶 RSSI: <b>{self.rssi}</b>'
+		else:
+			message += f'\n💾 Type: <b>Data {self.data_type.split()[-1].title()}</b>'
+			if self.block > 0:
+				message += f'\n📦 Blocks: <b>{self.block}</b>'
+		if self.is_watchdog:
+			message += '\n\n⚠️ Warning: <b>Network watchdog expired</b>'
+		if self.mode == 'D-Star':
+			if self.destination.startswith('CQCQCQ'):
+				message += '\n\n📢 Action: <b>Call to all stations</b>'
+			elif self.destination.endswith('L'):
+				message += f'\n\n🔗 Action: <b>Link to {self.destination[:-1]}</b>'
+			elif self.destination.endswith('U'):
+				message += '\n\n❌ Action: <b>Unlink reflector</b>'
+			elif self.destination.endswith('I'):
+				message += '\n\nℹ️ Action: <b>Get repeater info</b>'
+			elif self.destination.endswith('E'):
+				message += '\n\n🔄 Action: <b>Echo test</b>'
+		return message
+
+
+class TelegramBot:
+	"""Manages the Telegram bot application and message queue."""
+
+	def __init__(self, token: str, chat_id: str, topic_id: str, app_name: str):
+		self.token = token
+		self.chat_id = chat_id
+		self.topic_id = topic_id
+		self.app: Optional[TelegramApplication] = None
+		self.app_name = app_name
+		self.queue = asyncio.Queue()
+
+	async def queue_message(self, message: str):
+		"""Queues a message to be sent."""
+		await self.queue.put(message)
+
+	async def run(self, stop_event: asyncio.Event):
+		"""Runs the Telegram bot and message worker."""
+		if not self.token:
+			logging.error('Telegram token not provided. Bot will not start.')
+			return
+
+		try:
+			self.app = ApplicationBuilder().token(self.token).build()
+			logging.info('Telegram application built successfully.')
+			async with self.app:
+				await self.app.initialize()
+				await self.app.start()
+				logging.info('Telegram bot started successfully.')
+
+				# Run the message worker
+				worker_task = asyncio.create_task(self._worker(stop_event))
+				await stop_event.wait()
+				await worker_task
+
+				await self.app.stop()
+				await self.app.shutdown()
+		except Exception as e:
+			logging.error('Error running Telegram bot: %s', e)
+
+	async def _worker(self, stop_event: asyncio.Event):
+		"""Worker to process and send Telegram messages from the queue."""
+		logging.info('Starting Telegram message worker...')
+		while not stop_event.is_set():
+			try:
+				tg_message = await asyncio.wait_for(self.queue.get(), timeout=1.0)
+			except asyncio.TimeoutError:
+				continue
+			message = f'{tg_message}\n\n<code>{self.app_name}</code>'
+			if self.app:
+				try:
+					botmsg = await self.app.bot.send_message(
+						chat_id=self.chat_id,
+						message_thread_id=self.topic_id,
+						text=message,
+						parse_mode='HTML',
+						link_preview_options={'is_disabled': True, 'prefer_small_media': True, 'show_above_text': True},
+					)
+					logging.info('Sent message to Telegram: %s/%s/%s', botmsg.chat_id, botmsg.message_thread_id, botmsg.message_id)
+				except Exception as e:
+					logging.error('Failed to send message to Telegram: %s', e)
+			self.queue.task_done()
+			await asyncio.sleep(0.5)
+
+
+class LogObserver:
+	"""Watches the MMDVM logs and sends updates via the Telegram bot."""
+
+	def __init__(
+		self,
+		data_manager: DataManager,
+		telegram_bot: TelegramBot,
+		ignore_time_messages: bool = True,
+		app_name_short: str = 'MMDVM_LastHeard',
+		relevant_log_patterns: Optional[list[str]] = None,
+	):
+		self.data_manager = data_manager
+		self.telegram_bot = telegram_bot
+		self.log_reader = data_manager.log_reader
+		self.ignore_time_messages = ignore_time_messages
+		self.app_name_short = app_name_short
+		self.relevant_log_patterns = relevant_log_patterns or []
+
+	async def run(self, stop_event: asyncio.Event):
+		"""Starts the log observation loop."""
+		logging.info('Starting MMDVM log file retrieval...')
+		last_event: Optional[dt.datetime] = None
+		current_log_path: Optional[str] = None
+
+		while not stop_event.is_set():
+			try:
+				latest_log = self.log_reader.get_latest_log_path()
+				if current_log_path != latest_log:
+					logging.info('Switching to new log file: %s', latest_log)
+					if latest_log:
+						msg = f'📃 {self.app_name_short} '
+						if current_log_path:
+							msg += (
+								f'Log Changed\nOld File: <s>{os.path.basename(current_log_path)}</s>\nNew File: <b>{os.path.basename(latest_log)}</b>'
+							)
+						else:
+							msg += f'Monitoring Log\nFile: <b>{os.path.basename(latest_log)}</b>'
+						await self.telegram_bot.queue_message(msg)
+					current_log_path = latest_log
+
+				if current_log_path:
+					await self._process_log_file(current_log_path, last_event)
+					# Update last_event to avoid re-processing if needed,
+					# but currently we just read the last line.
+					# To properly track last_event, we'd need to return it from _process_log_file
+					# or store it as instance state.
+					# For now, let's read the last line and update state if it's new.
+					last_line = self.log_reader.get_last_line(current_log_path)
+					if any(pattern in last_line for pattern in self.relevant_log_patterns):
+						try:
+							parsed_line = MMDVMLogLine.from_logline(last_line, self.data_manager)
+							if parsed_line.timestamp and (last_event is None or parsed_line.timestamp > last_event):
+								last_event = parsed_line.timestamp
+								await self._handle_new_entry(parsed_line)
+						except ValueError:
+							pass
+				else:
+					logging.error('No log file path available')
+			except Exception as e:
+				logging.error('Error in observer loop: %s', e)
+
+			try:
+				await asyncio.wait_for(stop_event.wait(), timeout=1.0)
+			except asyncio.TimeoutError:
+				pass
+
+	async def _process_log_file(self, log_path: str, last_event: Optional[dt.datetime]):
+		"""Processes a log file."""
+		# This method is a placeholder if we wanted to read more than just the last line.
+		# The logic is currently embedded in the run loop for the "last line" approach.
+		pass
+
+	async def _handle_new_entry(self, parsed_line: MMDVMLogLine):
+		"""Handles a new log entry."""
+		logging.info('New log entry: %s', parsed_line)
+		if not (self.ignore_time_messages and '/TIME' in parsed_line.callsign):
+			tg_message = parsed_line.get_telegram_message()
+			if tg_message:
+				await self.telegram_bot.queue_message(tg_message)
+		elif self.ignore_time_messages:
+			logging.info('Ignoring time message from gateway.')
+
+
+async def main():
+	"""Main function to initialize and run the Telegram bot and logs observer."""
+	config = ConfigManager()
+	data_manager = DataManager()
+	telegram_bot = TelegramBot(config.tg_bot_token, config.tg_chat_id, config.tg_topic_id, config.app_name)
+	log_observer = LogObserver(
+		data_manager,
+		telegram_bot,
+		ignore_time_messages=config.gw_ignore_time_messages,
+		app_name_short=config.app_name_short,
+		relevant_log_patterns=config.relevant_log_patterns,
+	)
+
+	stop_event = asyncio.Event()
+	loop = asyncio.get_running_loop()
+	for sig in (signal.SIGINT, signal.SIGTERM):
+		loop.add_signal_handler(sig, lambda: stop_event.set())
+
+	# Start the Telegram bot task
+	bot_task = asyncio.create_task(telegram_bot.run(stop_event))
+
+	# Wait for bot to be ready (optional, but good for startup messages)
+	# Since TelegramBot.run blocks, we run it in a task.
+	# We can send a startup message immediately; it will sit in the queue until the bot connects.
+	await telegram_bot.queue_message(f'🚀 {config.app_name_short} Started')
+
+	# Start the log observer
+	try:
+		await log_observer.run(stop_event)
+	except asyncio.CancelledError:
+		logging.info('Main loop cancelled.')
+	finally:
+		await telegram_bot.queue_message(f'🛑 {config.app_name_short} Stopping')
+		if not stop_event.is_set():
+			stop_event.set()
+		await bot_task
+
+
+if __name__ == '__main__':
+	LoggingManager().setup()
+	try:
+		logging.info('Starting the application...')
+		asyncio.run(main())
+	except KeyboardInterrupt:
+		logging.info('Stopping application...')
+	except Exception as e:
+		logging.error('An error occurred: %s', e)
+	finally:
+		logging.info('Exiting script...')
