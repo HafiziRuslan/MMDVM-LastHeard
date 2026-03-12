@@ -2,9 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
-## [beta6] - (2026-03-13T00:03:03+08:00)
+## [beta6] - (2026-03-13T00:10:27+08:00)
 
-- 20 commit(s) contributed to the release.
+- 21 commit(s) contributed to the release.
 - 3 day(s) passed between the first and last commit.
 - 3 day(s) passed between releases.
 
@@ -17,6 +17,7 @@ All notable changes to this project will be documented in this file.
 
 ### 🐛 Bug Fixes in beta6
 
+- [65dc68a](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/65dc68ad71cbea175048d15c8f29f4855b5d1f59) fix: An error occurred: invalid literal for int() with base 10 *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-13T00:10:27+08:00*
 - [c96e1c9](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/c96e1c9ad658a6d9faf79a6bc109b0c35a7a756e) refactor(logging): add numeric prefixes and increase maxBytes *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-12T21:49:55+08:00*
 - [25c664b](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/25c664becd70c7c6de6b09082dded09eb95fcdf1) fix(release): relax version parsing to allow 2-part version numbers *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-12T04:47:21+08:00*
 
@@ -437,4 +438,4 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-generated using git-cliff at 2026-03-13T00:04:02.914405952+08:00
+generated using git-cliff at 2026-03-13T00:11:19.432566816+08:00
