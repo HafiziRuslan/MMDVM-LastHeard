@@ -77,7 +77,7 @@ class ConfigManager:
 			self.log_level = logging.INFO
 
 		# Parse LOG_MAX_SIZE and LOG_MAX_COUNT as integers, providing string defaults
-		self.log_max_size_mb = int(os.getenv('LOG_MAX_SIZE', '1'))  # Default 1MB
+		self.log_max_size_mb = float(os.getenv('LOG_MAX_SIZE', '1'))  # Default 1MB
 		self.log_max_count = int(os.getenv('LOG_MAX_COUNT', '3'))  # Default 3 backups
 
 		self.app_name, self.project_url = _get_app_metadata()
