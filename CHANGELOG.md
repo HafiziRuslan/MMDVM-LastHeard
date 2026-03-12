@@ -2,11 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
-## [beta6] - (2026-03-12T04:51:48+08:00)
+## [beta6] - (2026-03-12T16:57:15+08:00)
 
-- 13 commit(s) contributed to the release.
-- 2 day(s) passed between the first and last commit.
-- 2 day(s) passed between releases.
+- 15 commit(s) contributed to the release.
+- 3 day(s) passed between the first and last commit.
+- 3 day(s) passed between releases.
 
 ### 🚀 Features in beta6
 
@@ -24,6 +24,7 @@ All notable changes to this project will be documented in this file.
 
 ### 🚜 Refactor in beta6
 
+- [6ecb0e6](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/6ecb0e6eea0827ac8540480ce8b91b6fd66f902f) refactor(module): optimize module structure and improve code clarity *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-12T16:57:15+08:00*
 - [f34eaa7](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/f34eaa781575842eea92628beb3a3d20e73fab26) refactor(release): simplify version parsing logic for dynamic tags *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-12T04:19:56+08:00*
 - [2fd5e17](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/2fd5e1761262201abbbb792c2888d7bfb3f2b8b7) refactor(main): improve virtual environment handling and execution order *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-11T03:39:16+08:00*
 - [2d5eda8](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/2d5eda81f302074052a8053f32b196f43ef765c9) refactor(main.sh): overhaul script with structured initialization, logging, preflight checks, dependency management, repo sync, venv handling, and resilient runner *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-11T03:22:31+08:00*
@@ -35,6 +36,7 @@ All notable changes to this project will be documented in this file.
 
 ### ⚙️ Miscellaneous Tasks in beta6
 
+- [5699ff7](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/5699ff7e3bdc74157561e6f96d4784c0bca4dc0c) chore(funding): update sponsorship usernames *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-12T10:19:10+08:00*
 - [64e877b](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/64e877be1bf1939ba09f1d778fcbc6ad28812f1b) chore(metadata): update app version and metadata formatting *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-12T04:51:48+08:00*
 - [921488e](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/921488e85b96f92a273d7ab09c8daaa55e68ba80) chore(ci): add read permission to release workflow *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-12T04:23:48+08:00*
 - [e8a4cc1](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/e8a4cc116cc7c1575b657dfdef84e06b95c9dfed) chore(release): bump to 0.1b6 across project and release assets *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-09T21:13:46+08:00*
@@ -430,4 +432,4 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-generated using git-cliff at 2026-03-12T04:52:35.821738153+08:00
+generated using git-cliff at 2026-03-12T16:58:00.774794759+08:00
