@@ -1,5 +1,5 @@
 [project]
-name = 'MMDVM-LastHeard'
+name = 'MMDVM_LastHeard'
 version = '0.1b6'
 description = 'Telegram bot to monitor the last transmissions of a MMDVM gateway'
 keywords = ['amateur-radio', 'mmdvm', 'pi-star', 'wpsd']
