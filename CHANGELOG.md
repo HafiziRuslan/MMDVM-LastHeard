@@ -2,9 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
-## [beta6] - (2026-03-14T00:17:10+08:00)
+## [beta6] - (2026-03-14T00:32:40+08:00)
 
-- 30 commit(s) contributed to the release.
+- 31 commit(s) contributed to the release.
 - 4 day(s) passed between the first and last commit.
 - 4 day(s) passed between releases.
 
@@ -30,6 +30,7 @@ All notable changes to this project will be documented in this file.
 
 ### 🚜 Refactor in beta6
 
+- [66cdc8e](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/66cdc8efaa86c842adbbc892ec1d44d8bc3d1fe9) refactor(app): adjust naming conventions *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-14T00:32:40+08:00*
 - [401a6f1](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/401a6f107d1e3a71fc8d71fb3652c53221c480dd) refactor(app): standardize naming and paths *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-14T00:17:10+08:00*
 - [bf2b848](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/bf2b84844095b14653202edbaa0fccc767eb8533) refactor(log): enhance MMDVM log file discovery *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-13T21:24:39+08:00*
 - [e238e87](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/e238e878c79417066ec85fb54f747e5dce8be444) refactor(run): optimize log message formatting *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-13T20:59:26+08:00*
@@ -450,4 +451,4 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-generated using git-cliff at 2026-03-14T00:18:20.255916344+08:00
+generated using git-cliff at 2026-03-14T00:33:30.721352322+08:00
