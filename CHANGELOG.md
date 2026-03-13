@@ -2,14 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
-## [beta6] - (2026-03-13T21:24:39+08:00)
+## [beta6] - (2026-03-14T00:17:10+08:00)
 
-- 27 commit(s) contributed to the release.
+- 30 commit(s) contributed to the release.
 - 4 day(s) passed between the first and last commit.
 - 4 day(s) passed between releases.
 
 ### 🚀 Features in beta6
 
+- [2fa0abd](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/2fa0abdcb354265359c1796e46da8e8abb5d6672) feat(telegram): update workflow to trigger on completed changelog workflow runs *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-14T00:13:48+08:00*
 - [370d145](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/370d145a92274df23b980e3fc696163f64eba1d8) feat(config): add comprehensive configuration management *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-12T23:46:20+08:00*
 - [1b3c30b](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/1b3c30bb603f730211d5bd95023be936e4b5c23a) feat(ci): automate release workflow with dynamic versioning and tagging *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-12T04:11:53+08:00*
 - [efa3718](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/efa37183e8533391c12457af14335e49847a5b3e) feat(main): bootstrap apt dependencies, add command_exists, auto-install uv when online, and use uv venv --clear for cleanup *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-11T03:12:35+08:00*
@@ -29,6 +30,7 @@ All notable changes to this project will be documented in this file.
 
 ### 🚜 Refactor in beta6
 
+- [401a6f1](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/401a6f107d1e3a71fc8d71fb3652c53221c480dd) refactor(app): standardize naming and paths *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-14T00:17:10+08:00*
 - [bf2b848](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/bf2b84844095b14653202edbaa0fccc767eb8533) refactor(log): enhance MMDVM log file discovery *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-13T21:24:39+08:00*
 - [e238e87](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/e238e878c79417066ec85fb54f747e5dce8be444) refactor(run): optimize log message formatting *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-13T20:59:26+08:00*
 - [1098a97](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/1098a97978225f6b7e61ba4be4188c7c7cfea088) refactor(logging): centralize logging configuration through ConfigManager *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-13T20:04:21+08:00*
@@ -51,6 +53,7 @@ All notable changes to this project will be documented in this file.
 
 ### ⚙️ Miscellaneous Tasks in beta6
 
+- [58e96b1](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/58e96b15dc0038b0c58eb299e1f7b68080b01c63) chore(ci): add telegram workflow for sending commit notifications *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-13T22:14:24+08:00*
 - [5699ff7](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/5699ff7e3bdc74157561e6f96d4784c0bca4dc0c) chore(funding): update sponsorship usernames *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-12T10:19:10+08:00*
 - [64e877b](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/64e877be1bf1939ba09f1d778fcbc6ad28812f1b) chore(metadata): update app version and metadata formatting *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-12T04:51:48+08:00*
 - [921488e](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/921488e85b96f92a273d7ab09c8daaa55e68ba80) chore(ci): add read permission to release workflow *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-12T04:23:48+08:00*
@@ -447,4 +450,4 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-generated using git-cliff at 2026-03-13T21:26:44.146678640+08:00
+generated using git-cliff at 2026-03-14T00:18:20.255916344+08:00
