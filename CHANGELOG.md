@@ -2,14 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
-## [beta6] - (2026-03-14T00:32:40+08:00)
+## [beta6] - (2026-03-14T12:15:47+08:00)
 
-- 31 commit(s) contributed to the release.
-- 4 day(s) passed between the first and last commit.
-- 4 day(s) passed between releases.
+- 34 commit(s) contributed to the release.
+- 5 day(s) passed between the first and last commit.
+- 5 day(s) passed between releases.
 
 ### 🚀 Features in beta6
 
+- [5bde88f](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/5bde88fbfb9958e113bb08951b83b44196ef5d6f) feat(telegram): shorten commit SHA in workflow messages *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-14T05:02:14+08:00*
 - [2fa0abd](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/2fa0abdcb354265359c1796e46da8e8abb5d6672) feat(telegram): update workflow to trigger on completed changelog workflow runs *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-14T00:13:48+08:00*
 - [370d145](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/370d145a92274df23b980e3fc696163f64eba1d8) feat(config): add comprehensive configuration management *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-12T23:46:20+08:00*
 - [1b3c30b](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/1b3c30bb603f730211d5bd95023be936e4b5c23a) feat(ci): automate release workflow with dynamic versioning and tagging *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-12T04:11:53+08:00*
@@ -50,10 +51,12 @@ All notable changes to this project will be documented in this file.
 
 ### 🎨 Styling in beta6
 
+- [a9f86cb](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/a9f86cb4854a747a76a4c8f3c6dbdbe18de95633) style(telegram workflow): update telegram message separator *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-14T05:17:18+08:00*
 - [a74d2f9](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/a74d2f90f5382b811a544221142b394bd1909d0d) style(main): improve message formatting for Telegram notifications *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-13T21:01:47+08:00*
 
 ### ⚙️ Miscellaneous Tasks in beta6
 
+- [b8712b8](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/b8712b852844e0958b8f9015d8399c21b632ca28) build(sbom): regenerate SBOM *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-14T12:15:47+08:00*
 - [58e96b1](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/58e96b15dc0038b0c58eb299e1f7b68080b01c63) chore(ci): add telegram workflow for sending commit notifications *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-13T22:14:24+08:00*
 - [5699ff7](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/5699ff7e3bdc74157561e6f96d4784c0bca4dc0c) chore(funding): update sponsorship usernames *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-12T10:19:10+08:00*
 - [64e877b](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/64e877be1bf1939ba09f1d778fcbc6ad28812f1b) chore(metadata): update app version and metadata formatting *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-03-12T04:51:48+08:00*
@@ -451,4 +454,4 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-generated using git-cliff at 2026-03-14T00:33:30.721352322+08:00
+generated using git-cliff at 2026-03-14T12:16:35.231909793+08:00
