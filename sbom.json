@@ -2,14 +2,14 @@
   "bomFormat": "CycloneDX",
   "specVersion": "1.5",
   "version": 1,
-  "serialNumber": "urn:uuid:e7da857a-90b1-4187-a3ef-65da64098f15",
+  "serialNumber": "urn:uuid:f52c0f81-4758-4ae0-89ac-47e6fa97e35c",
   "metadata": {
-    "timestamp": "2026-05-30T09:50:23.569322700Z",
+    "timestamp": "2026-06-03T23:30:59.800643200Z",
     "tools": [
       {
         "vendor": "Astral Software Inc.",
         "name": "uv",
-        "version": "0.11.16"
+        "version": "0.11.18"
       }
     ],
     "component": {
@@ -70,10 +70,10 @@
     },
     {
       "type": "library",
-      "bom-ref": "idna-8@3.17",
+      "bom-ref": "idna-8@3.18",
       "name": "idna",
-      "version": "3.17",
-      "purl": "pkg:pypi/idna@3.17"
+      "version": "3.18",
+      "purl": "pkg:pypi/idna@3.18"
     },
     {
       "type": "library",
@@ -101,7 +101,7 @@
     {
       "ref": "anyio-2@4.13.0",
       "dependsOn": [
-        "idna-8@3.17"
+        "idna-8@3.18"
       ]
     },
     {
@@ -123,14 +123,14 @@
         "anyio-2@4.13.0",
         "certifi-3@2026.5.20",
         "httpcore-5@1.0.9",
-        "idna-8@3.17"
+        "idna-8@3.18"
       ]
     },
     {
       "ref": "humanize-7@4.15.0"
     },
     {
-      "ref": "idna-8@3.17"
+      "ref": "idna-8@3.18"
     },
     {
       "ref": "mmdvm-lastheard-1@0.1b9",
