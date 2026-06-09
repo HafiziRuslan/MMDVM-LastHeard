@@ -127,9 +127,9 @@ wheels = [
 
 [[package]]
 name = "safezip"
-version = "0.1.6"
+version = "0.1.7"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/ed/2d/51bedf3cc2084ffcbcafa10611547b3925d40097162ecf6157c86c67be71/safezip-0.1.6.tar.gz", hash = "sha256:e6492063cc6a6e85486fd6e904401eb4dcd2ce55b382b3a68c1cfe529996e9e3", size = 44060, upload-time = "2026-03-18T00:50:11.42Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/f0/4b/0d5c7b03b868b756faa5d239308ce962772a31b7edd5172b5cc0af20bac6/safezip-0.1.7.tar.gz", hash = "sha256:3309172db34f472177da3d70beb8cd2ec128f3b721038a4b859f6d3a7164eeaa", size = 46001, upload-time = "2026-06-08T22:46:37.058Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/e5/aa/24a02db7e53cb1f5330eaf56d345c29d9db4013b7cdd39d433a31fa9043a/safezip-0.1.6-py3-none-any.whl", hash = "sha256:d6ac7a53b54848f902d914490ac09bd36ca48093a4d415d201226d2800abfba3", size = 46379, upload-time = "2026-03-18T00:50:10.044Z" },
+    { url = "https://files.pythonhosted.org/packages/74/69/eecf637249035cf92988f7f23ff4a04d15272b1bff8192c54209b460dc9f/safezip-0.1.7-py3-none-any.whl", hash = "sha256:3a4532cd1e2fdd71ea292ab6133ff3dd9ec01d4649bf8ced0c9e62b440776485", size = 48077, upload-time = "2026-06-08T22:46:35.827Z" },
 ]
