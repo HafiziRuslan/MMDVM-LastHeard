@@ -2,10 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
-## [beta9] - (2026-06-10T13:59:15+08:00)
+## [beta9] - (2026-06-13T01:37:23+08:00)
 
-- 13 commit(s) contributed to the release.
-- 29 day(s) passed between releases.
+- 14 commit(s) contributed to the release.
+- 31 day(s) passed between releases.
 
 ### 🚀 Features in beta9
 
@@ -31,6 +31,7 @@ All notable changes to this project will be documented in this file.
 
 ### ⚙️ Miscellaneous Tasks in beta9
 
+- [62498e3](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/62498e31f523c57670582aba26766f512a306896) chore(python-telegram-bot): update to version 22.8 *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-06-13T01:37:23+08:00*
 - [9d8a648](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/9d8a64880b81284ff71fa040ad25e99702e6baa3) chore: update safezip dependency and related files to version 0.1.7 *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-06-10T13:59:15+08:00*
 - [a068c65](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/a068c658640dc0b12639dd70967805c9330aa934) chore(deps): bump idna to 3.18 *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-06-04T07:31:46+08:00*
 - [4ba7d03](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/4ba7d03e47687b549f10b5202ca7214ea668d5e5) chore(deps): update idna to 3.17 *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-05-30T17:51:40+08:00*
@@ -610,4 +611,4 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-generated using git-cliff at 2026-06-10T14:01:07.990337610+08:00
+generated using git-cliff at 2026-06-13T01:38:35.765220177+08:00
