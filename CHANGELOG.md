@@ -2,10 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
-## [beta9] - (2026-06-18T01:47:33+08:00)
+## [beta9] - (2026-06-25T12:28:34+08:00)
 
-- 16 commit(s) contributed to the release.
-- 36 day(s) passed between releases.
+- 18 commit(s) contributed to the release.
+- 44 day(s) passed between releases.
 
 ### 🚀 Features in beta9
 
@@ -31,6 +31,7 @@ All notable changes to this project will be documented in this file.
 
 ### ⚙️ Miscellaneous Tasks in beta9
 
+- [31e71f8](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/31e71f82536700c8db2836fb00b41f902876d596) chore(deps): bump certifi in the python group *by [@dependabot[bot]](https://github.com/dependabot[bot]) on 2026-06-24T01:04:45+08:00*
 - [b88fd17](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/b88fd17f6753155e503c4d92dc848260c64664ed) chore(deps): bump anyio from 4.13.0 to 4.14.0 in the python group *by [@dependabot[bot]](https://github.com/dependabot[bot]) on 2026-06-17T01:06:44+08:00*
 - [62498e3](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/62498e31f523c57670582aba26766f512a306896) chore(python-telegram-bot): update to version 22.8 *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-06-13T01:37:23+08:00*
 - [9d8a648](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/9d8a64880b81284ff71fa040ad25e99702e6baa3) chore: update safezip dependency and related files to version 0.1.7 *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-06-10T13:59:15+08:00*
@@ -612,4 +613,4 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-generated using git-cliff at 2026-06-18T01:48:29.641897958+08:00
+generated using git-cliff at 2026-06-25T12:29:11.416398919+08:00
