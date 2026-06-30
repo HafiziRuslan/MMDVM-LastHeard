@@ -2,14 +2,14 @@
   "bomFormat": "CycloneDX",
   "specVersion": "1.5",
   "version": 1,
-  "serialNumber": "urn:uuid:ceb53ffa-8a1f-4eb4-be97-87d213447e25",
+  "serialNumber": "urn:uuid:08e96b45-1340-4094-97cc-d81ec03da209",
   "metadata": {
-    "timestamp": "2026-06-26T17:47:10.653795600Z",
+    "timestamp": "2026-06-30T18:48:11.962214900Z",
     "tools": [
       {
         "vendor": "Astral Software Inc.",
         "name": "uv",
-        "version": "0.11.24"
+        "version": "0.11.25"
       }
     ],
     "component": {
@@ -63,10 +63,10 @@
     },
     {
       "type": "library",
-      "bom-ref": "humanize-7@4.15.0",
+      "bom-ref": "humanize-7@4.16.0",
       "name": "humanize",
-      "version": "4.15.0",
-      "purl": "pkg:pypi/humanize@4.15.0"
+      "version": "4.16.0",
+      "purl": "pkg:pypi/humanize@4.16.0"
     },
     {
       "type": "library",
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "ref": "humanize-7@4.15.0"
+      "ref": "humanize-7@4.16.0"
     },
     {
       "ref": "idna-8@3.18"
@@ -136,7 +136,7 @@
       "ref": "mmdvm-lastheard-1@0.1b9",
       "dependsOn": [
         "httpx-6@0.28.1",
-        "humanize-7@4.15.0",
+        "humanize-7@4.16.0",
         "python-dotenv-9@1.2.2",
         "python-telegram-bot-10@22.8",
         "safezip-11@0.1.7"

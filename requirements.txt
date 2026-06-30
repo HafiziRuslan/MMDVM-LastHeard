@@ -14,7 +14,7 @@ httpx==0.28.1
     # via
     #   mmdvm-lastheard
     #   python-telegram-bot
-humanize==4.15.0
+humanize==4.16.0
     # via mmdvm-lastheard
 idna==3.18
     # via
