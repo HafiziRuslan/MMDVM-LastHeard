@@ -2,10 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
-## [beta9] - (2026-07-01T02:49:56+08:00)
+## [beta9] - (2026-07-01T11:02:59+08:00)
 
-- 20 commit(s) contributed to the release.
-- 49 day(s) passed between releases.
+- 21 commit(s) contributed to the release.
+- 50 day(s) passed between releases.
 
 ### 🚀 Features in beta9
 
@@ -31,6 +31,7 @@ All notable changes to this project will be documented in this file.
 
 ### ⚙️ Miscellaneous Tasks in beta9
 
+- [0b7667a](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/0b7667ab5b710076d96a1a3cfbe4f399e17d9f05) chore(sbom): regenerate SBOM with uv 0.11.26 *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-07-01T11:02:59+08:00*
 - [7d71a0d](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/7d71a0d7f4d73003252293f66b6bc4175da4f6e3) chore(dependency): bump humanize to 4.16.0 *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-07-01T02:49:56+08:00*
 - [631243b](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/631243bdaec2b57595eebc5194d2eb40bb294f1a) chore(dependencies): bump dependency versions *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-06-27T02:11:42+08:00*
 - [31e71f8](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/31e71f82536700c8db2836fb00b41f902876d596) chore(deps): bump certifi in the python group *by [@dependabot[bot]](https://github.com/dependabot[bot]) on 2026-06-24T01:04:45+08:00*
@@ -615,4 +616,4 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-generated using git-cliff at 2026-07-01T02:51:34.668047892+08:00
+generated using git-cliff at 2026-07-01T11:04:07.626938592+08:00
