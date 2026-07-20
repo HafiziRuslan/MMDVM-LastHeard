@@ -2,10 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
-## [beta9] - (2026-07-01T11:02:59+08:00)
+## [beta9] - (2026-07-20T19:03:54+08:00)
 
-- 21 commit(s) contributed to the release.
-- 50 day(s) passed between releases.
+- 22 commit(s) contributed to the release.
+- 69 day(s) passed between releases.
 
 ### 🚀 Features in beta9
 
@@ -31,6 +31,7 @@ All notable changes to this project will be documented in this file.
 
 ### ⚙️ Miscellaneous Tasks in beta9
 
+- [66fe99a](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/66fe99a0565faa78adaed56682e9b969fbd035b7) chore(deps): bump anyio to 4.14.2 *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-07-20T19:03:54+08:00*
 - [0b7667a](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/0b7667ab5b710076d96a1a3cfbe4f399e17d9f05) chore(sbom): regenerate SBOM with uv 0.11.26 *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-07-01T11:02:59+08:00*
 - [7d71a0d](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/7d71a0d7f4d73003252293f66b6bc4175da4f6e3) chore(dependency): bump humanize to 4.16.0 *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-07-01T02:49:56+08:00*
 - [631243b](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/631243bdaec2b57595eebc5194d2eb40bb294f1a) chore(dependencies): bump dependency versions *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-06-27T02:11:42+08:00*
@@ -616,4 +617,4 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-generated using git-cliff at 2026-07-01T11:04:07.626938592+08:00
+generated using git-cliff at 2026-07-20T19:05:50.402190565+08:00
