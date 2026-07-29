@@ -37,9 +37,7 @@ exec >> "$LOG_FILE" 2>&1
 
 # --- Function Definitions ---
 
-#
 # Group 1: Core Utilities
-#
 log_msg() {
   local level=$1
   local calling_func=${FUNCNAME[1]:-main}
@@ -55,9 +53,7 @@ command_exists() {
   command -v "$1" >/dev/null 2>&1
 }
 
-#
 # Group 2: Pre-flight Checks
-#
 check_internet() {
   INTERNET_AVAILABLE=false
   local hosts=("1.1.1.1" "8.8.8.8" "github.com" "pypi.org")
@@ -88,9 +84,7 @@ check_disk_space() {
   return 0
 }
 
-#
 # Group 3: Setup and Maintenance
-#
 ensure_system_packages() {
   local packages=("$@")
   local missing_packages=()
@@ -175,7 +169,12 @@ update_repository() {
 
         log_msg INFO "Verifying repository integrity..."
         if sudo -u "$dir_own" git fsck --full >/dev/null 2>&1; then
-          log_msg INFO "Update applied and verified. Restarting script..."
+          log_msg INFO "Update applied and verified. Performing git maintenance and restarting script..."
+          if sudo -u "$dir_own" git gc --prune=now --aggressive >/dev/null 2>&1; then
+            log_msg INFO "Git garbage collection completed."
+          else
+            log_msg WARN "Git garbage collection failed or was skipped."
+          fi
           exec "$0" "$@"
         else
           log_msg ERROR "Repository integrity check failed! Skipping restart."
@@ -218,9 +217,7 @@ manage_venv() {
   fi
 }
 
-#
 # Group 4: Application Execution
-#
 run_application() {
   log_msg INFO "Running MMDVM-LastHeard"
   local retry_count=0
