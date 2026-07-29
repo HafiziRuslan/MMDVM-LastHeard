@@ -2,10 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
-## [beta9] - (2026-07-20T19:03:54+08:00)
+## [beta9] - (2026-07-29T16:27:25+08:00)
 
-- 22 commit(s) contributed to the release.
-- 69 day(s) passed between releases.
+- 23 commit(s) contributed to the release.
+- 78 day(s) passed between releases.
 
 ### 🚀 Features in beta9
 
@@ -22,6 +22,7 @@ All notable changes to this project will be documented in this file.
 
 ### 🚜 Refactor in beta9
 
+- [3cd4a7f](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/3cd4a7ffc14e2229dd0819e4191ed8956d793c5e) refactor(maintenance): add git garbage collection after repository update *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-07-29T16:27:25+08:00*
 - [a67bf7a](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/a67bf7ae83bd1aadc1cd379ca38fed4b4d25e4a2) refactor(mmdvm-lastheard): improve service dependencies and logging *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-05-13T18:55:36+08:00*
 - [19b0421](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/19b0421aa55d5736db4467ab2a66fda6a5df7246) refactor(MMDVMLogLine): simplify parsers and slots *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-05-13T15:36:20+08:00*
 
@@ -617,4 +618,4 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-generated using git-cliff at 2026-07-20T19:05:50.402190565+08:00
+generated using git-cliff at 2026-07-29T16:28:59.358413054+08:00
