@@ -2,10 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
-## [beta9] - (2026-07-29T16:32:45+08:00)
+## [beta9] - (2026-08-04T03:05:58+08:00)
 
-- 24 commit(s) contributed to the release.
-- 78 day(s) passed between releases.
+- 25 commit(s) contributed to the release.
+- 83 day(s) passed between releases.
 
 ### 🚀 Features in beta9
 
@@ -32,6 +32,7 @@ All notable changes to this project will be documented in this file.
 
 ### ⚙️ Miscellaneous Tasks in beta9
 
+- [433fd4b](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/433fd4b3f28619681d18e08a19f51927eb11a95a) chore(sbom): update sbom for uv 0.12.1 *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-08-04T03:05:58+08:00*
 - [0ffe54a](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/0ffe54a9d66b842b4e0bd6f02fc115842515defd) chore(dependencies): update certifi package to 2026.7.22 *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-07-29T16:32:45+08:00*
 - [66fe99a](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/66fe99a0565faa78adaed56682e9b969fbd035b7) chore(deps): bump anyio to 4.14.2 *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-07-20T19:03:54+08:00*
 - [0b7667a](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/0b7667ab5b710076d96a1a3cfbe4f399e17d9f05) chore(sbom): regenerate SBOM with uv 0.11.26 *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-07-01T11:02:59+08:00*
@@ -619,4 +620,4 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-generated using git-cliff at 2026-07-29T16:34:05.125884975+08:00
+generated using git-cliff at 2026-08-04T03:07:18.256546302+08:00
