@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [beta10] - (2026-08-09T06:53:31+08:00)
+
+- 3 commit(s) contributed to the release.
+- 5 day(s) passed between releases.
+
+### ⚙️ Miscellaneous Tasks in beta10
+
+- [5d9a803](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/5d9a803dbb392566cafec5004090f3f54ca54c7b) chore(MMDVM-LastHeard): bump version to 0.1b10 *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-08-09T06:53:31+08:00*
+- [479ee9c](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/479ee9cc80e6b3205f08e87b00730444f6a5e50e) chore(release): update filename format to use underscore *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-08-09T06:49:14+08:00*
+- [8204322](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/8204322b673eaa9d0b6739780db924b9a679faee) ci(workflow): switch telegram chat id to vars and add thread-id *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-08-09T06:24:57+08:00*
+
+---
+
 ## [beta9] - (2026-08-04T03:05:58+08:00)
 
 - 25 commit(s) contributed to the release.
@@ -620,4 +633,4 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-generated using git-cliff at 2026-08-04T03:07:18.256546302+08:00
+generated using git-cliff at 2026-08-09T06:54:40.328407500+08:00
