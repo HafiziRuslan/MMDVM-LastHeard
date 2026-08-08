@@ -2,21 +2,21 @@
   "bomFormat": "CycloneDX",
   "specVersion": "1.5",
   "version": 1,
-  "serialNumber": "urn:uuid:002162e5-5abf-4bfc-8715-7e2f4c310880",
+  "serialNumber": "urn:uuid:90fc2e67-2a89-40e3-918f-6afbd3d1d7ee",
   "metadata": {
-    "timestamp": "2026-08-03T19:02:35.937779500Z",
+    "timestamp": "2026-08-08T22:44:17.021927500Z",
     "tools": [
       {
         "vendor": "Astral Software Inc.",
         "name": "uv",
-        "version": "0.12.1"
+        "version": "0.12.3"
       }
     ],
     "component": {
       "type": "library",
-      "bom-ref": "mmdvm-lastheard-1@0.1b9",
+      "bom-ref": "mmdvm-lastheard-1@0.1b10",
       "name": "mmdvm-lastheard",
-      "version": "0.1b9",
+      "version": "0.1b10",
       "properties": [
         {
           "name": "uv:package:is_project_root",
@@ -133,7 +133,7 @@
       "ref": "idna-8@3.18"
     },
     {
-      "ref": "mmdvm-lastheard-1@0.1b9",
+      "ref": "mmdvm-lastheard-1@0.1b10",
       "dependsOn": [
         "httpx-6@0.28.1",
         "humanize-7@4.16.0",

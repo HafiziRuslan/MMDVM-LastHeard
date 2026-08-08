@@ -84,7 +84,7 @@ wheels = [
 
 [[package]]
 name = "mmdvm-lastheard"
-version = "0.1b9"
+version = "0.1b10"
 source = { virtual = "." }
 dependencies = [
     { name = "httpx" },
