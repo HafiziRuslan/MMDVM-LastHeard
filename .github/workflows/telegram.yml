@@ -25,12 +25,13 @@ jobs:
         uses: cbrgm/telegram-github-action@main
         with:
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          to: ${{ vars.TELEGRAM_CHAT_ID }}
+          thread-id: ${{ vars.TELEGRAM_THREAD_ID }}
           message: |
             New commit on <b><a href="${{ github.event.workflow_run.head_repository.html_url }}/commit/${{ github.event.workflow_run.head_sha }}">${{ github.event.workflow_run.head_repository.full_name }} -> ${{ github.event.workflow_run.head_branch }}</a></b>!
             ———————————
             Ref: <code>${{ steps.vars.outputs.sha_short }}</code> on ${{ github.event.workflow_run.head_commit.timestamp }} by <a href="${{ github.event.sender.html_url }}">@${{ github.event.sender.login }}</a>
-            Commit: <pre>${{ github.event.workflow_run.head_commit.message }}</pre>
+            Message: <pre>${{ github.event.workflow_run.head_commit.message }}</pre>
           parse-mode: 'html'
           disable-web-page-preview: true
           disable-notification: false
