@@ -81,7 +81,7 @@ jobs:
         uses: thedoctor0/zip-release@main
         with:
           type: 'zip'
-          filename: "${{ needs.version.outputs.name }}-${{ needs.version.outputs.version }}.zip"
+          filename: "${{ needs.version.outputs.name }}_${{ needs.version.outputs.version }}.zip"
           exclusions: '*.git* /.git* LICENSE /tests* *.md /misc*'
           recursive_exclusions: '*.md'
 
