@@ -16,11 +16,11 @@ httpx==0.28.1
     #   python-telegram-bot
 humanize==4.16.0
     # via mmdvm-lastheard
-idna==3.18
+idna==3.19
     # via
     #   anyio
     #   httpx
-python-dotenv==1.2.2
+python-dotenv==1.2.3
     # via mmdvm-lastheard
 python-telegram-bot==22.8
     # via mmdvm-lastheard
