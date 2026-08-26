@@ -2,13 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
-## [beta10] - (2026-08-09T06:53:31+08:00)
+## [beta10] - (2026-08-26T15:41:01+08:00)
 
-- 3 commit(s) contributed to the release.
-- 5 day(s) passed between releases.
+- 5 commit(s) contributed to the release.
+- 23 day(s) passed between releases.
+
+### 🐛 Bug Fixes in beta10
+
+- [32c1dcc](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/32c1dcce1851df5cd556d92b085fbb604849a585) fix artifacts value *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-08-09T07:02:12+08:00*
 
 ### ⚙️ Miscellaneous Tasks in beta10
 
+- [7b72b26](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/7b72b26bf6b0e57f570781532fbc3aa3836efd87) chore(deps): update idna and python-dotenv *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-08-26T15:41:01+08:00*
 - [5d9a803](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/5d9a803dbb392566cafec5004090f3f54ca54c7b) chore(MMDVM-LastHeard): bump version to 0.1b10 *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-08-09T06:53:31+08:00*
 - [479ee9c](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/479ee9cc80e6b3205f08e87b00730444f6a5e50e) chore(release): update filename format to use underscore *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-08-09T06:49:14+08:00*
 - [8204322](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/8204322b673eaa9d0b6739780db924b9a679faee) ci(workflow): switch telegram chat id to vars and add thread-id *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-08-09T06:24:57+08:00*
@@ -633,4 +638,4 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-generated using git-cliff at 2026-08-09T06:54:40.328407500+08:00
+generated using git-cliff at 2026-08-26T15:42:15.581624754+08:00
