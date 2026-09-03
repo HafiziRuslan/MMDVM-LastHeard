@@ -30,7 +30,6 @@ urls.history = 'https://github.com/HafiziRuslan/MMDVM-LastHeard/blob/master/CHAN
 urls.issuetracker = 'https://github.com/HafiziRuslan/MMDVM-LastHeard/issues'
 requires-python = '>= 3.13'
 dependencies = [
-  'httpx',
   'humanize',
   'python-dotenv',
   'python-telegram-bot',

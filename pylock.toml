@@ -4,10 +4,10 @@ requires-python = ">=3.13"
 
 [[packages]]
 name = "anyio"
-version = "4.14.2"
+version = "4.15.0"
 index = "https://pypi.org/simple"
-sdist = { url = "https://files.pythonhosted.org/packages/61/cc/a381afa6efea9f496eff839d4a6a1aed3bfafc7b3ab4b0d1b243a12573dd/anyio-4.14.2.tar.gz", upload-time = 2026-07-12T20:29:07Z, size = 260176, hashes = { sha256 = "cfa139f3ed1a23ee8f88a145ddb5ac7605b8bbfd8592baacd7ce3d8bb4313c7f" } }
-wheels = [{ url = "https://files.pythonhosted.org/packages/da/35/f2287558c17e29fafc8ef3daf819bb9834061cfa43bff8014f7df7f63bdc/anyio-4.14.2-py3-none-any.whl", upload-time = 2026-07-12T20:29:05Z, size = 125813, hashes = { sha256 = "9f505dda5ac9f0c8309b5e8bd445a8c2bf7246f3ce950121e45ea15bc41d1494" } }]
+sdist = { url = "https://files.pythonhosted.org/packages/ea/9a/c15a60547004a3f3cea20296c934f827ddd7bdba225a2e7e9fcb5ec48c80/anyio-4.15.0.tar.gz", upload-time = 2026-09-02T21:46:36Z, size = 276504, hashes = { sha256 = "b5c620ed540725e2579c31b17bb995b3bf02c9281c9cace04c7d186380bab85e" } }
+wheels = [{ url = "https://files.pythonhosted.org/packages/21/a6/2b21ce5ebe4d8938a247c9b0dbb7271566ae559b01795c83ea4bb2660ed7/anyio-4.15.0-py3-none-any.whl", upload-time = 2026-09-02T21:46:35Z, size = 131908, hashes = { sha256 = "7ecd9937369ffce8bba0b5ccb9b3a9507b101b0ed50256aecfbab27e6c2acb99" } }]
 
 [[packages]]
 name = "certifi"
@@ -71,3 +71,11 @@ version = "0.1.7"
 index = "https://pypi.org/simple"
 sdist = { url = "https://files.pythonhosted.org/packages/f0/4b/0d5c7b03b868b756faa5d239308ce962772a31b7edd5172b5cc0af20bac6/safezip-0.1.7.tar.gz", upload-time = 2026-06-08T22:46:37Z, size = 46001, hashes = { sha256 = "3309172db34f472177da3d70beb8cd2ec128f3b721038a4b859f6d3a7164eeaa" } }
 wheels = [{ url = "https://files.pythonhosted.org/packages/74/69/eecf637249035cf92988f7f23ff4a04d15272b1bff8192c54209b460dc9f/safezip-0.1.7-py3-none-any.whl", upload-time = 2026-06-08T22:46:35Z, size = 48077, hashes = { sha256 = "3a4532cd1e2fdd71ea292ab6133ff3dd9ec01d4649bf8ced0c9e62b440776485" } }]
+
+[[packages]]
+name = "typing-extensions"
+version = "4.16.0"
+marker = "python_full_version < '3.15'"
+index = "https://pypi.org/simple"
+sdist = { url = "https://files.pythonhosted.org/packages/f6/cc/6253133b5bb138fc3306cebfbda2c520f545d36b5be2c7255cc528bb45d6/typing_extensions-4.16.0.tar.gz", upload-time = 2026-07-02T08:40:05Z, size = 113555, hashes = { sha256 = "dc983d19a509c94dba722ee6abd33940f7c05a89e243c47e907eb4db6f1a43e5" } }
+wheels = [{ url = "https://files.pythonhosted.org/packages/49/d3/b8441a820a491ddfc024b0b0cf0393375b75ea13866d9c66727e54c2fc80/typing_extensions-4.16.0-py3-none-any.whl", upload-time = 2026-07-02T08:40:04Z, size = 45571, hashes = { sha256 = "481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8" } }]
