@@ -2,10 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
-## [beta10] - (2026-09-10T06:36:07+08:00)
+## [beta10] - (2026-09-16T03:52:11+08:00)
 
-- 8 commit(s) contributed to the release.
-- 37 day(s) passed between releases.
+- 9 commit(s) contributed to the release.
+- 43 day(s) passed between releases.
 
 ### 🐛 Bug Fixes in beta10
 
@@ -17,6 +17,7 @@ All notable changes to this project will be documented in this file.
 
 ### ⚙️ Miscellaneous Tasks in beta10
 
+- [f095987](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/f0959875dc622cb8dd38eb2cb9c0a9d81fed4ca9) chore(sbom): update SBOM metadata *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-09-16T03:52:11+08:00*
 - [c26c3ba](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/c26c3ba94e1c3306258634c3f3ec33b85469bd49) chore(dependencies): update anyio to 4.15.1 and uv to 0.12.10 *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-09-07T20:07:21+08:00*
 - [c227d02](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/c227d02682ff5f8de9d05f0fb7e48f0e4fc1d3a3) chore(deps): update dependencies *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-09-04T06:52:03+08:00*
 - [7b72b26](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/7b72b26bf6b0e57f570781532fbc3aa3836efd87) chore(deps): update idna and python-dotenv *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-08-26T15:41:01+08:00*
@@ -644,4 +645,4 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-generated using git-cliff at 2026-09-10T06:37:16.463796978+08:00
+generated using git-cliff at 2026-09-16T03:53:14.676476223+08:00
