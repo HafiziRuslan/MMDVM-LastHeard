@@ -2,14 +2,14 @@
   "bomFormat": "CycloneDX",
   "specVersion": "1.5",
   "version": 1,
-  "serialNumber": "urn:uuid:c196d404-a892-45f0-aa0c-0209b9f5658b",
+  "serialNumber": "urn:uuid:40fbc606-f9f5-4d2b-9f27-f9fbc95b262e",
   "metadata": {
-    "timestamp": "2026-09-24T14:01:37.852278300Z",
+    "timestamp": "2026-10-05T14:38:42.764048300Z",
     "tools": [
       {
         "vendor": "Astral Software Inc.",
         "name": "uv",
-        "version": "0.12.18"
+        "version": "0.12.23"
       }
     ],
     "component": {
@@ -77,10 +77,10 @@
     },
     {
       "type": "library",
-      "bom-ref": "python-dotenv-9@1.2.3",
+      "bom-ref": "python-dotenv-9@1.2.4",
       "name": "python-dotenv",
-      "version": "1.2.3",
-      "purl": "pkg:pypi/python-dotenv@1.2.3"
+      "version": "1.2.4",
+      "purl": "pkg:pypi/python-dotenv@1.2.4"
     },
     {
       "type": "library",
@@ -150,13 +150,13 @@
       "ref": "mmdvm-lastheard-1@0.1b10",
       "dependsOn": [
         "humanize-7@4.16.0",
-        "python-dotenv-9@1.2.3",
+        "python-dotenv-9@1.2.4",
         "python-telegram-bot-10@22.8",
         "safezip-11@0.1.7"
       ]
     },
     {
-      "ref": "python-dotenv-9@1.2.3"
+      "ref": "python-dotenv-9@1.2.4"
     },
     {
       "ref": "python-telegram-bot-10@22.8",
