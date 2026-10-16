@@ -2,10 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
-## [beta10] - (2026-10-11T20:42:38+08:00)
+## [beta10] - (2026-10-16T20:01:26+08:00)
 
-- 16 commit(s) contributed to the release.
-- 69 day(s) passed between releases.
+- 18 commit(s) contributed to the release.
+- 74 day(s) passed between releases.
+
+### 🚀 Features in beta10
+
+- [980f8cc](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/980f8ccd22160ba623d58d08204f44329819de66) feat(deps): upgrade safezip to 0.2 *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-10-16T20:01:26+08:00*
 
 ### 🐛 Bug Fixes in beta10
 
@@ -17,6 +21,7 @@ All notable changes to this project will be documented in this file.
 
 ### ⚙️ Miscellaneous Tasks in beta10
 
+- [27f1728](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/27f1728a70c8d3ce96219047541e0669f0421bf3) chore(gitignore): add linux/macos,pydev,direnv *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-10-16T20:00:05+08:00*
 - [f18d6fe](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/f18d6fe5645b3f6615558509c61097900ecf917d) chore(sbom): update SBOM with uv 0.13.0 *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-10-11T20:40:27+08:00*
 - [fe526f9](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/fe526f978ffdfd6e89ba7d00db5ef11fb9cdb0bc) chore(deps): update python-dotenv to 1.2.4 *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-10-05T22:41:52+08:00*
 - [9cfa379](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/9cfa379236a6650bf3f59c0f82ba3e0cca9d7688) chore(deps): bump MyAlbum/purge-cache from 2 to 3 *by [@dependabot[bot]](https://github.com/dependabot[bot]) on 2026-10-01T01:05:37+08:00*
@@ -650,4 +655,4 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-generated using git-cliff at 2026-10-11T20:43:24.880465137+08:00
+generated using git-cliff at 2026-10-16T20:02:57.108631495+08:00
