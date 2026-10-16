@@ -67,10 +67,10 @@ wheels = [{ url = "https://files.pythonhosted.org/packages/60/7c/ed7d4dd94280bd4
 
 [[packages]]
 name = "safezip"
-version = "0.1.7"
+version = "0.2"
 index = "https://pypi.org/simple"
-sdist = { url = "https://files.pythonhosted.org/packages/f0/4b/0d5c7b03b868b756faa5d239308ce962772a31b7edd5172b5cc0af20bac6/safezip-0.1.7.tar.gz", upload-time = 2026-06-08T22:46:37Z, size = 46001, hashes = { sha256 = "3309172db34f472177da3d70beb8cd2ec128f3b721038a4b859f6d3a7164eeaa" } }
-wheels = [{ url = "https://files.pythonhosted.org/packages/74/69/eecf637249035cf92988f7f23ff4a04d15272b1bff8192c54209b460dc9f/safezip-0.1.7-py3-none-any.whl", upload-time = 2026-06-08T22:46:35Z, size = 48077, hashes = { sha256 = "3a4532cd1e2fdd71ea292ab6133ff3dd9ec01d4649bf8ced0c9e62b440776485" } }]
+sdist = { url = "https://files.pythonhosted.org/packages/0e/18/dbf8514df9e32ec0b948286296cfa706ab60f6f97b91dd2604643a538f38/safezip-0.2.tar.gz", upload-time = 2026-10-16T00:23:17Z, size = 47166, hashes = { sha256 = "3504d1b0d1c207305a248e1e2fedcba9b101c6994e0532639ad41e9d35f01772" } }
+wheels = [{ url = "https://files.pythonhosted.org/packages/af/66/c33607159f55218c3b62b83d7726807033ce28e8ef05d28a2ee248dee0ae/safezip-0.2-py3-none-any.whl", upload-time = 2026-10-16T00:23:16Z, size = 49014, hashes = { sha256 = "b5d12617807a3a291b073c6c2d78607aa395da1885aed2bb718cd532f8d33925" } }]
 
 [[packages]]
 name = "typing-extensions"

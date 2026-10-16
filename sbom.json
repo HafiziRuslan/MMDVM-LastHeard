@@ -2,14 +2,14 @@
   "bomFormat": "CycloneDX",
   "specVersion": "1.5",
   "version": 1,
-  "serialNumber": "urn:uuid:f4bf7a23-2822-4412-af0e-8cb40ab4915f",
+  "serialNumber": "urn:uuid:e365d0f1-0274-4528-b839-e04d7f492d2f",
   "metadata": {
-    "timestamp": "2026-10-11T12:04:10.614279500Z",
+    "timestamp": "2026-10-16T10:57:13.615427600Z",
     "tools": [
       {
         "vendor": "Astral Software Inc.",
         "name": "uv",
-        "version": "0.13.0"
+        "version": "0.13.1"
       }
     ],
     "component": {
@@ -91,10 +91,10 @@
     },
     {
       "type": "library",
-      "bom-ref": "safezip-11@0.1.7",
+      "bom-ref": "safezip-11@0.2",
       "name": "safezip",
-      "version": "0.1.7",
-      "purl": "pkg:pypi/safezip@0.1.7"
+      "version": "0.2",
+      "purl": "pkg:pypi/safezip@0.2"
     },
     {
       "type": "library",
@@ -152,7 +152,7 @@
         "humanize-7@4.16.0",
         "python-dotenv-9@1.2.4",
         "python-telegram-bot-10@22.8",
-        "safezip-11@0.1.7"
+        "safezip-11@0.2"
       ]
     },
     {
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "ref": "safezip-11@0.1.7"
+      "ref": "safezip-11@0.2"
     },
     {
       "ref": "typing-extensions-12@4.16.0"

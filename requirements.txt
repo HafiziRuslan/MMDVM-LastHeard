@@ -22,7 +22,7 @@ python-dotenv==1.2.4
     # via mmdvm-lastheard
 python-telegram-bot==22.8
     # via mmdvm-lastheard
-safezip==0.1.7
+safezip==0.2
     # via mmdvm-lastheard
 typing-extensions==4.16.0 ; python_full_version < '3.15'
     # via anyio
