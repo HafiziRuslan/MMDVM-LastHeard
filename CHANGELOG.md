@@ -2,9 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
-## [beta10] - (2026-10-16T20:01:26+08:00)
+## [beta10] - (2026-10-16T20:15:16+08:00)
 
-- 18 commit(s) contributed to the release.
+- 19 commit(s) contributed to the release.
 - 74 day(s) passed between releases.
 
 ### 🚀 Features in beta10
@@ -13,6 +13,7 @@ All notable changes to this project will be documented in this file.
 
 ### 🐛 Bug Fixes in beta10
 
+- [7caaa66](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/7caaa662fc80dd52c1f692d866398cee58c8ec88) gitignore: add backup patterns *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-10-16T20:15:16+08:00*
 - [32c1dcc](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/32c1dcce1851df5cd556d92b085fbb604849a585) fix artifacts value *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-08-09T07:02:12+08:00*
 
 ### 🚜 Refactor in beta10
@@ -655,4 +656,4 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-generated using git-cliff at 2026-10-16T20:02:57.108631495+08:00
+generated using git-cliff at 2026-10-16T20:16:26.140803073+08:00
