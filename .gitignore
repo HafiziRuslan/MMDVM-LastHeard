@@ -1,8 +1,63 @@
-# Created by https://www.toptal.com/developers/gitignore/api/dotenv,python,pythonvanilla,venv,virtualenv,visualstudiocode,windows
-# Edit at https://www.toptal.com/developers/gitignore?templates=dotenv,python,pythonvanilla,venv,virtualenv,visualstudiocode,windows
+# Created by https://www.toptal.com/developers/gitignore/api/direnv,dotenv,linux,macos,pydev,python,pythonvanilla,venv,virtualenv,visualstudiocode,windows
+# Edit at https://www.toptal.com/developers/gitignore?templates=direnv,dotenv,linux,macos,pydev,python,pythonvanilla,venv,virtualenv,visualstudiocode,windows
+
+### direnv ###
+.direnv
+.envrc
 
 ### dotenv ###
 .env
+
+### Linux ###
+*~
+
+# temporary files which can be created if a process still has a handle open of a deleted file
+.fuse_hidden*
+
+# KDE directory preferences
+.directory
+
+# Linux trash folder which might appear on any partition or disk
+.Trash-*
+
+# .nfs files are created when an open file is removed but is still being accessed
+.nfs*
+
+### macOS ###
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+### macOS Patch ###
+# iCloud generated files
+*.icloud
+
+### pydev ###
+.pydevproject
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
@@ -263,7 +318,8 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/dotenv,python,pythonvanilla,venv,virtualenv,visualstudiocode,windows
+# End of https://www.toptal.com/developers/gitignore/api/direnv,dotenv,linux,macos,pydev,python,pythonvanilla,venv,virtualenv,visualstudiocode,windows
 
 .*/
 !.github/
+.python-version
