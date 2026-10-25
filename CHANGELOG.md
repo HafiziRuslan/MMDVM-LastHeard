@@ -2,9 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
-## [beta10] - (2026-10-25T08:04:31+08:00)
+## [beta10] - (2026-10-25T08:13:56+08:00)
 
-- 21 commit(s) contributed to the release.
+- 23 commit(s) contributed to the release.
 - 83 day(s) passed between releases.
 
 ### 🚀 Features in beta10
@@ -13,12 +13,17 @@ All notable changes to this project will be documented in this file.
 
 ### 🐛 Bug Fixes in beta10
 
+- [2adab98](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/2adab98752b5c88e52434d1b319de28dca41084a) style(ruff): update ruff formatter and linter configuration *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-10-25T08:13:18+08:00*
 - [7caaa66](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/7caaa662fc80dd52c1f692d866398cee58c8ec88) gitignore: add backup patterns *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-10-16T20:15:16+08:00*
 - [32c1dcc](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/32c1dcce1851df5cd556d92b085fbb604849a585) fix artifacts value *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-08-09T07:02:12+08:00*
 
 ### 🚜 Refactor in beta10
 
 - [e97dfd2](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/e97dfd205a2aa49f386e356886c3a532a21a1520) refactor(telegram): reformat message labels and order *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-09-10T06:36:07+08:00*
+
+### 🎨 Styling in beta10
+
+- [9260130](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/926013029207e1c3ffcb4e97fe4af322f13bd113) style(main): compress multi-line constructs *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-10-25T08:13:56+08:00*
 
 ### ⚙️ Miscellaneous Tasks in beta10
 
@@ -658,4 +663,4 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-generated using git-cliff at 2026-10-25T08:05:35.885881590+08:00
+generated using git-cliff at 2026-10-25T08:14:58.104085945+08:00
