@@ -360,9 +360,7 @@ class TalkgroupManager:
 		gc.collect()
 		return tg_map
 
-	def _read_talkgroup_file(
-		self, file_path: str, delimiter: str, id_idx: int, name_idx: int, tg_map: dict, suffix: str = '', overwrite: bool = True
-	):
+	def _read_talkgroup_file(self, file_path: str, delimiter: str, id_idx: int, name_idx: int, tg_map: dict, suffix: str = '', overwrite: bool = True):
 		"""Helper to read a talkgroup file and update the map."""
 		if not os.path.isfile(file_path):
 			return
@@ -470,15 +468,7 @@ class DataUpdater:
 			logging.info('Searching for user database at %s', self.url)
 			user_agent = f'{self.telegram_bot.app_name} (+{self.project_url})'
 			async with httpx.AsyncClient(headers={'User-Agent': user_agent}) as client:
-				for rid_file in [
-					'dmrid.dat',
-					'dstar_repeaters.json',
-					'nxdn.csv',
-					'nxdn_repeaters.json',
-					'p25_repeaters.json',
-					'rptrs.json',
-					'users.json',
-				]:
+				for rid_file in ['dmrid.dat', 'dstar_repeaters.json', 'nxdn.csv', 'nxdn_repeaters.json', 'p25_repeaters.json', 'rptrs.json', 'users.json']:
 					try:
 						rid_url = f'https://radioid.net/static/{rid_file}'
 						logging.info('Fetching %s from radioid.net', rid_file)
@@ -544,16 +534,7 @@ class DataUpdater:
 
 	async def run(self, stop_event: asyncio.Event):
 		"""Schedules the update task daily at 05:15+ UTC with a random offset."""
-		db_files = [
-			'dmrid.dat',
-			'dstar_repeaters.json',
-			'nxdn.csv',
-			'nxdn_repeaters.json',
-			'p25_repeaters.json',
-			'rptrs.json',
-			'user.csv',
-			'users.json',
-		]
+		db_files = ['dmrid.dat', 'dstar_repeaters.json', 'nxdn.csv', 'nxdn_repeaters.json', 'p25_repeaters.json', 'rptrs.json', 'user.csv', 'users.json']
 
 		def is_outdated(file_path: str) -> bool:
 			if not os.path.exists(file_path):
@@ -571,9 +552,7 @@ class DataUpdater:
 				target_time += dt.timedelta(days=1)
 			wait_seconds = (target_time - now).total_seconds()
 			logging.info('Next user database update at %s', target_time.astimezone().isoformat(timespec='seconds'))
-			await self.telegram_bot.queue_message(
-				f'ℹ️ Next user database update at <i>{target_time.astimezone().isoformat(timespec="seconds")}</i>...'
-			)
+			await self.telegram_bot.queue_message(f'ℹ️ Next user database update at <i>{target_time.astimezone().isoformat(timespec="seconds")}</i>...')
 			try:
 				await asyncio.wait_for(stop_event.wait(), timeout=wait_seconds)
 			except asyncio.TimeoutError:
@@ -829,14 +808,7 @@ class MMDVMLogLine:
 	def from_logline(cls, logline: str, data_manager: 'DataManager') -> 'MMDVMLogLine':
 		"""Factory method using a cached class-level tuple for parsers."""
 		if cls._PARSERS is None:
-			cls._PARSERS = (
-				cls._parse_dmr_voice,
-				cls._parse_dstar,
-				cls._parse_dstar_watchdog,
-				cls._parse_ysf,
-				cls._parse_ysf_net_data,
-				cls._parse_dvs,
-			)
+			cls._PARSERS = (cls._parse_dmr_voice, cls._parse_dstar, cls._parse_dstar_watchdog, cls._parse_ysf, cls._parse_ysf_net_data, cls._parse_dvs)
 		for parser in cls._PARSERS:
 			instance = parser(logline)
 			if instance:
@@ -1103,9 +1075,7 @@ class MMDVMLogLine:
 			if self.is_kerchunk:
 				message += ' (Kerchunk)'
 			else:
-				message += (
-					f'\n⏱️ <b>Duration</b>: {humanize.precisedelta(dt.timedelta(seconds=self.duration), minimum_unit="seconds", format="%0.0f")}'
-				)
+				message += f'\n⏱️ <b>Duration</b>: {humanize.precisedelta(dt.timedelta(seconds=self.duration), minimum_unit="seconds", format="%0.0f")}'
 				if self.ber > 0:
 					message += f'\n📊 <b>Bit Error Rate</b>: {self.ber}%'
 				if self.is_network:
@@ -1197,11 +1167,7 @@ class LogObserver:
 	"""Watches the MMDVM logs and sends updates via the Telegram bot."""
 
 	def __init__(
-		self,
-		data_manager: DataManager,
-		telegram_bot: TelegramBot,
-		ignore_time_messages: bool = True,
-		relevant_log_patterns: Optional[list[str]] = None,
+		self, data_manager: DataManager, telegram_bot: TelegramBot, ignore_time_messages: bool = True, relevant_log_patterns: Optional[list[str]] = None
 	):
 		self.data_manager = data_manager
 		self.telegram_bot = telegram_bot
@@ -1223,9 +1189,7 @@ class LogObserver:
 						app_name_short = self.telegram_bot.app_name.split('/')[0]
 						msg = f'📃 {app_name_short} '
 						if current_log_path:
-							msg += (
-								f'Log Changed\nOld Log: <s>{os.path.basename(current_log_path)}</s>\n<b>New Log</b>: {os.path.basename(latest_log)}'
-							)
+							msg += f'Log Changed\nOld Log: <s>{os.path.basename(current_log_path)}</s>\n<b>New Log</b>: {os.path.basename(latest_log)}'
 						else:
 							msg += f'Monitoring\n<b>Log</b>: {os.path.basename(latest_log)}'
 						await self.telegram_bot.queue_message(msg)
