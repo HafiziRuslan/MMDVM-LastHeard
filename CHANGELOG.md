@@ -2,10 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
-## [beta10] - (2026-10-22T21:27:20+08:00)
+## [beta10] - (2026-10-25T08:04:31+08:00)
 
-- 20 commit(s) contributed to the release.
-- 80 day(s) passed between releases.
+- 21 commit(s) contributed to the release.
+- 83 day(s) passed between releases.
 
 ### 🚀 Features in beta10
 
@@ -22,6 +22,7 @@ All notable changes to this project will be documented in this file.
 
 ### ⚙️ Miscellaneous Tasks in beta10
 
+- [44dbff2](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/44dbff23f70285115c22db48c98b17748950b93e) chore(dependencies): update certifi to version 2026.10.23 *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-10-25T08:04:31+08:00*
 - [3aef862](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/3aef8629374a784aab9a8022f614d027d8a577d9) chore(dependencies): update certifi to 2026.10.19 *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-10-22T21:27:20+08:00*
 - [27f1728](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/27f1728a70c8d3ce96219047541e0669f0421bf3) chore(gitignore): add linux/macos,pydev,direnv *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-10-16T20:00:05+08:00*
 - [f18d6fe](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/f18d6fe5645b3f6615558509c61097900ecf917d) chore(sbom): update SBOM with uv 0.13.0 *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-10-11T20:40:27+08:00*
@@ -657,4 +658,4 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-generated using git-cliff at 2026-10-22T21:28:17.394777068+08:00
+generated using git-cliff at 2026-10-25T08:05:35.885881590+08:00
