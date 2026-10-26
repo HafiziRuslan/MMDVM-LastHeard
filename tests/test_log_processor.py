@@ -24,7 +24,7 @@ import os
 import sys
 
 # Mock telegram modules before importing main
-import unittest.mock as mock
+from unittest import mock
 
 sys.modules['telegram'] = mock.MagicMock()
 sys.modules['telegram.ext'] = mock.MagicMock()

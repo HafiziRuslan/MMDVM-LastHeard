@@ -19,8 +19,12 @@
 import asyncio
 import configparser
 import csv
+from dataclasses import dataclass
+from dataclasses import field
 import datetime as dt
 import difflib
+from functools import lru_cache
+import gc
 import glob
 import logging
 import logging.handlers
@@ -32,17 +36,14 @@ import signal
 import subprocess
 import sys
 import tomllib
-import gc
-from safezip import SafeZipFile
-from dataclasses import dataclass
-from dataclasses import field
-from functools import lru_cache
 from typing import Optional
 
-import humanize
-import httpx
+from codes import COUNTRY_CODES
+from codes import MCC_CODES
 from dotenv import load_dotenv
-from codes import COUNTRY_CODES, MCC_CODES
+import httpx
+import humanize
+from safezip import SafeZipFile
 from telegram.ext import Application as TelegramApplication
 from telegram.ext import ApplicationBuilder
 
@@ -75,7 +76,7 @@ class ConfigManager:
 		self.tg_bot_token = os.getenv('TG_BOTTOKEN', '')
 		self.tg_chat_id = os.getenv('TG_CHATID', '')
 		self.tg_topic_id = os.getenv('TG_TOPICID', '0')
-		self.gw_ignore_time_messages = os.getenv('GW_IGNORE_MESSAGES', 'True').lower() == 'true'
+		self.gw_ignore_time_messages = os.getenv('GW_IGNORE_MESSAGES', 'true').lower() == 'true'
 		log_level_map = {0: logging.CRITICAL + 1, 1: logging.DEBUG, 2: logging.INFO, 3: logging.WARNING, 4: logging.ERROR, 5: logging.CRITICAL}
 		log_level_raw = os.getenv('LOG_LEVEL')
 		try:
@@ -101,7 +102,7 @@ class LoggingManager:
 		"""A logging formatter that uses ISO 8601 format for timestamps."""
 
 		def formatTime(self, record, datefmt=None):
-			return dt.datetime.fromtimestamp(record.created, dt.timezone.utc).astimezone().isoformat(timespec='milliseconds')
+			return dt.datetime.fromtimestamp(record.created, dt.UTC).astimezone().isoformat(timespec='milliseconds')
 
 	class NumberedRotatingFileHandler(logging.handlers.RotatingFileHandler):
 		"""RotatingFileHandler with backup number before the extension."""
@@ -242,7 +243,7 @@ class Formatter:
 class DMRGatewayManager:
 	"""Manages loading and caching of DMRGateway configuration."""
 
-	def __init__(self, config_files: list[str] = None):
+	def __init__(self, config_files: list[str] | None = None):
 		self._cache = {'path': None, 'mtime': 0, 'rules': [], 'networks': [], 'xlx_tgs': {}}
 		self._conf_files = config_files or ['/etc/dmrgateway', '/etc/DMRGateway.ini', '/opt/DMRGateway/DMRGateway.ini']
 
@@ -347,13 +348,13 @@ class TalkgroupManager:
 				processed_files.add(tg_file)
 				filename = os.path.basename(tg_file)
 				name_part = os.path.splitext(filename)[0]
-				suffix = name_part[7:] if name_part.startswith('TGList_') else name_part
+				suffix = name_part.removeprefix('TGList_')
 				self._read_talkgroup_file(tg_file, delimiter, id_idx, name_idx, tg_map, suffix=suffix, overwrite=True)
 		for tg_file in catch_all_files:
 			if tg_file not in processed_files:
 				filename = os.path.basename(tg_file)
 				name_part = os.path.splitext(filename)[0]
-				suffix = name_part[7:] if name_part.startswith('TGList_') else name_part
+				suffix = name_part.removeprefix('TGList_')
 				self._read_talkgroup_file(tg_file, ';', 0, 1, tg_map, suffix=suffix, overwrite=False)
 		self._apply_special_rules(tg_map)
 		self._cache['mtimes'] = current_mtimes
@@ -539,14 +540,14 @@ class DataUpdater:
 		def is_outdated(file_path: str) -> bool:
 			if not os.path.exists(file_path):
 				return True
-			mtime = dt.datetime.fromtimestamp(os.path.getmtime(file_path), dt.timezone.utc)
-			return (dt.datetime.now(dt.timezone.utc) - mtime) > dt.timedelta(days=1)
+			mtime = dt.datetime.fromtimestamp(os.path.getmtime(file_path), dt.UTC)
+			return (dt.datetime.now(dt.UTC) - mtime) > dt.timedelta(days=1)
 
 		needs_update = any(is_outdated(os.path.join(self.target_dir, f)) for f in db_files)
 		if needs_update:
 			await self.update_user_db()
 		while not stop_event.is_set():
-			now = dt.datetime.now(dt.timezone.utc)
+			now = dt.datetime.now(dt.UTC)
 			target_time = now.replace(hour=5, minute=random.randint(15, 45), second=random.randint(0, 59), microsecond=0)
 			if now >= target_time:
 				target_time += dt.timedelta(days=1)
@@ -555,7 +556,7 @@ class DataUpdater:
 			await self.telegram_bot.queue_message(f'ℹ️ Next user database update at <i>{target_time.astimezone().isoformat(timespec="seconds")}</i>...')
 			try:
 				await asyncio.wait_for(stop_event.wait(), timeout=wait_seconds)
-			except asyncio.TimeoutError:
+			except TimeoutError:
 				await self.update_user_db()
 
 
@@ -686,7 +687,7 @@ class LogFileReader:
 				break
 		return log_dir, file_root
 
-	def get_latest_log_path(self) -> Optional[str]:
+	def get_latest_log_path(self) -> str | None:
 		"""Finds and returns the path to the most recent MMDVM log file."""
 		log_files = glob.glob(os.path.join(self.log_dir, f'{self.file_root}-*.log'))
 		if not log_files:
@@ -729,7 +730,7 @@ class DataManager:
 
 @dataclass(slots=True)
 class MMDVMLogLine:
-	timestamp: Optional[dt.datetime] = None
+	timestamp: dt.datetime | None = None
 	mode: str = ''
 	callsign: str = ''
 	destination: str = ''
@@ -942,7 +943,7 @@ class MMDVMLogLine:
 
 	def __str__(self):
 		"""Returns a string representation of the log line."""
-		self.is_kerchunk = True if self.duration < 2 else False
+		self.is_kerchunk = self.duration < 2
 		base = f'Timestamp: {self.timestamp}, Mode: {self.mode}, Callsign: {self.callsign}, Destination: {self.destination}'
 		if self.mode == 'DMR' or self.mode == 'DMR-D':
 			base += f', Slot: {self.slot}'
@@ -1009,27 +1010,26 @@ class MMDVMLogLine:
 			tg_name = name
 		return tg_name
 
-	def _resolve_numeric_id_as_name(self, numeric_id_str: str) -> Optional[str]:
+	def _resolve_numeric_id_as_name(self, numeric_id_str: str) -> str | None:
 		"""Resolves a numeric ID string to a human-readable name, potentially a talkgroup name or MCC-based label."""
 		name = None
 		tg_map = self.data_manager.talkgroups.get_map()
 		name = f' ({tg_map.get(numeric_id_str)})'
-		if name is None and numeric_id_str.isdigit():
-			if len(numeric_id_str) >= 3:
-				try:
-					mcc_prefix = int(numeric_id_str[:3])
-					if mcc_prefix in MCC_CODES:
-						country, code = MCC_CODES[mcc_prefix]
-						if numeric_id_str == f'{mcc_prefix}990':
-							name = f' ({Formatter.get_flag_emoji(code)} {code} Text Message)'
-						elif numeric_id_str == f'{mcc_prefix}997':
-							name = f' ({Formatter.get_flag_emoji(code)} {code} Parrot)'
-						elif numeric_id_str == f'{mcc_prefix}999':
-							name = f' ({Formatter.get_flag_emoji(code)} {code} ARS/RRS/GPS)'
-						if name is None and len(numeric_id_str) > 3:
-							name = f' ({Formatter.get_flag_emoji(code)} {country})'
-				except ValueError:
-					pass
+		if name is None and numeric_id_str.isdigit() and len(numeric_id_str) >= 3:
+			try:
+				mcc_prefix = int(numeric_id_str[:3])
+				if mcc_prefix in MCC_CODES:
+					country, code = MCC_CODES[mcc_prefix]
+					if numeric_id_str == f'{mcc_prefix}990':
+						name = f' ({Formatter.get_flag_emoji(code)} {code} Text Message)'
+					elif numeric_id_str == f'{mcc_prefix}997':
+						name = f' ({Formatter.get_flag_emoji(code)} {code} Parrot)'
+					elif numeric_id_str == f'{mcc_prefix}999':
+						name = f' ({Formatter.get_flag_emoji(code)} {code} ARS/RRS/GPS)'
+					if name is None and len(numeric_id_str) > 3:
+						name = f' ({Formatter.get_flag_emoji(code)} {country})'
+			except ValueError:
+				pass
 		return name
 
 	def get_caller_location(self) -> str:
@@ -1063,7 +1063,7 @@ class MMDVMLogLine:
 		message = f'{mode_icon} <b>Mode</b>: {display_mode}'
 		if self.mode == 'DMR' or self.mode == 'DMR-D':
 			message += f' (Slot {self.slot})'
-		time = (self.timestamp.replace(tzinfo=dt.timezone.utc) or dt.datetime.now()).astimezone().isoformat(timespec='milliseconds')
+		time = (self.timestamp.replace(tzinfo=dt.UTC) or dt.datetime.now()).astimezone().isoformat(timespec='milliseconds')
 		message += f'\n🕒 <b>Time</b>: {time}'
 		if self.url:
 			message += f'\n🎙️ <b>Caller</b>: <a href="{self.url}">{self.callsign}</a>{self.get_caller_location()}'
@@ -1110,7 +1110,7 @@ class TelegramBot:
 		self.token = token
 		self.chat_id = chat_id
 		self.topic_id = topic_id
-		self.app: Optional[TelegramApplication] = None
+		self.app: TelegramApplication | None = None
 		self.app_name = app_name
 		self.queue = asyncio.Queue()
 
@@ -1144,7 +1144,7 @@ class TelegramBot:
 		while not stop_event.is_set():
 			try:
 				tg_message = await asyncio.wait_for(self.queue.get(), timeout=1.0)
-			except asyncio.TimeoutError:
+			except TimeoutError:
 				continue
 			message = f'{tg_message}\n\n<code>{self.app_name}</code>'
 			if self.app:
@@ -1167,7 +1167,7 @@ class LogObserver:
 	"""Watches the MMDVM logs and sends updates via the Telegram bot."""
 
 	def __init__(
-		self, data_manager: DataManager, telegram_bot: TelegramBot, ignore_time_messages: bool = True, relevant_log_patterns: Optional[list[str]] = None
+		self, data_manager: DataManager, telegram_bot: TelegramBot, ignore_time_messages: bool = True, relevant_log_patterns: list[str] | None = None
 	):
 		self.data_manager = data_manager
 		self.telegram_bot = telegram_bot
@@ -1178,8 +1178,8 @@ class LogObserver:
 	async def run(self, stop_event: asyncio.Event):
 		"""Starts the log observation loop."""
 		logging.info('Starting MMDVM log file retrieval...')
-		last_event: Optional[dt.datetime] = None
-		current_log_path: Optional[str] = None
+		last_event: dt.datetime | None = None
+		current_log_path: str | None = None
 		while not stop_event.is_set():
 			try:
 				latest_log = self.log_reader.get_latest_log_path()
@@ -1214,14 +1214,13 @@ class LogObserver:
 				logging.error('Error in observer loop: %s', e)
 			try:
 				await asyncio.wait_for(stop_event.wait(), timeout=1.0)
-			except asyncio.TimeoutError:
+			except TimeoutError:
 				pass
 
-	async def _process_log_file(self, log_path: str, last_event: Optional[dt.datetime]):
+	async def _process_log_file(self, log_path: str, last_event: dt.datetime | None):
 		"""Processes a log file."""
 		# This method is a placeholder if we wanted to read more than just the last line.
 		# The logic is currently embedded in the run loop for the "last line" approach.
-		pass
 
 	async def _handle_new_entry(self, parsed_line: MMDVMLogLine):
 		"""Handles a new log entry."""
