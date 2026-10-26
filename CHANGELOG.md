@@ -2,17 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
-## [beta10] - (2026-10-25T08:13:56+08:00)
+## [beta10] - (2026-10-27T02:07:43+08:00)
 
-- 23 commit(s) contributed to the release.
-- 83 day(s) passed between releases.
+- 27 commit(s) contributed to the release.
+- 84 day(s) passed between releases.
 
 ### 🚀 Features in beta10
 
+- [38412a0](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/38412a0d8899a79494ad14da0bc13b903d6ddb8c) feat(config): add option to ignore kerchunk messages *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-10-27T02:05:40+08:00*
 - [980f8cc](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/980f8ccd22160ba623d58d08204f44329819de66) feat(deps): upgrade safezip to 0.2 *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-10-16T20:01:26+08:00*
 
 ### 🐛 Bug Fixes in beta10
 
+- [f9fc787](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/f9fc78787b72dc822d4a01e1e59001304e27cb22) refactor(core): modernize python syntax and typing *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-10-27T02:06:59+08:00*
 - [2adab98](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/2adab98752b5c88e52434d1b319de28dca41084a) style(ruff): update ruff formatter and linter configuration *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-10-25T08:13:18+08:00*
 - [7caaa66](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/7caaa662fc80dd52c1f692d866398cee58c8ec88) gitignore: add backup patterns *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-10-16T20:15:16+08:00*
 - [32c1dcc](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/32c1dcce1851df5cd556d92b085fbb604849a585) fix artifacts value *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-08-09T07:02:12+08:00*
@@ -21,12 +23,17 @@ All notable changes to this project will be documented in this file.
 
 - [e97dfd2](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/e97dfd205a2aa49f386e356886c3a532a21a1520) refactor(telegram): reformat message labels and order *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-09-10T06:36:07+08:00*
 
+### 📚 Documentation in beta10
+
+- [112add8](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/112add82abf0ec1e617bf1af7b180135f11b6eee) docs(readme): update repository URLs *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-10-27T02:07:22+08:00*
+
 ### 🎨 Styling in beta10
 
 - [9260130](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/926013029207e1c3ffcb4e97fe4af322f13bd113) style(main): compress multi-line constructs *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-10-25T08:13:56+08:00*
 
 ### ⚙️ Miscellaneous Tasks in beta10
 
+- [bc0426f](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/bc0426f2f8cd96dc8ead049311143292d2e58c70) chore(deps): update sbom metadata *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-10-27T02:07:43+08:00*
 - [44dbff2](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/44dbff23f70285115c22db48c98b17748950b93e) chore(dependencies): update certifi to version 2026.10.23 *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-10-25T08:04:31+08:00*
 - [3aef862](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/3aef8629374a784aab9a8022f614d027d8a577d9) chore(dependencies): update certifi to 2026.10.19 *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-10-22T21:27:20+08:00*
 - [27f1728](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/27f1728a70c8d3ce96219047541e0669f0421bf3) chore(gitignore): add linux/macos,pydev,direnv *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-10-16T20:00:05+08:00*
@@ -663,4 +670,4 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-generated using git-cliff at 2026-10-25T08:14:58.104085945+08:00
+generated using git-cliff at 2026-10-27T02:09:35.134924629+08:00
