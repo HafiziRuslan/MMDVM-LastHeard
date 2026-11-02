@@ -184,11 +184,11 @@ class LoggingManager:
 	def _configure_file_handlers(self, logger: logging.Logger):
 		"""Configures and adds rotating file handlers for different log levels."""
 		levels_map = {
-			logging.DEBUG: '1-debug.log',
-			logging.INFO: '2-info.log',
-			logging.WARNING: '3-warning.log',
-			logging.ERROR: '4-error.log',
-			logging.CRITICAL: '5-critical.log',
+			logging.DEBUG: 'debug.log',
+			logging.INFO: 'info.log',
+			logging.WARNING: 'warning.log',
+			logging.ERROR: 'error.log',
+			logging.CRITICAL: 'critical.log',
 		}
 		for level, filename in levels_map.items():
 			if level >= self.log_level:
