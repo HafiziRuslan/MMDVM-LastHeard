@@ -2,9 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
-## [beta10] - (2026-11-03T02:22:09+08:00)
+## [beta10] - (2026-11-03T05:32:25+08:00)
 
-- 29 commit(s) contributed to the release.
+- 30 commit(s) contributed to the release.
 - 91 day(s) passed between releases.
 
 ### 🚀 Features in beta10
@@ -26,6 +26,7 @@ All notable changes to this project will be documented in this file.
 
 ### 📚 Documentation in beta10
 
+- [f106714](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/f10671457a98db87dd5534ab9a173ec1c4515a98) docs(README): reorder systemd setup steps and use symlink *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-11-03T05:32:25+08:00*
 - [112add8](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/112add82abf0ec1e617bf1af7b180135f11b6eee) docs(readme): update repository URLs *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-10-27T02:07:22+08:00*
 
 ### 🎨 Styling in beta10
@@ -672,4 +673,4 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-generated using git-cliff at 2026-11-03T02:24:13.630566554+08:00
+generated using git-cliff at 2026-11-03T05:33:45.003030821+08:00
