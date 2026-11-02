@@ -2,10 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
-## [beta10] - (2026-10-27T02:07:43+08:00)
+## [beta10] - (2026-11-03T02:22:09+08:00)
 
-- 27 commit(s) contributed to the release.
-- 84 day(s) passed between releases.
+- 29 commit(s) contributed to the release.
+- 91 day(s) passed between releases.
 
 ### 🚀 Features in beta10
 
@@ -14,6 +14,7 @@ All notable changes to this project will be documented in this file.
 
 ### 🐛 Bug Fixes in beta10
 
+- [417021f](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/417021f6a8b496c12ebc569dd9a394f880040163) refactor(logging): simplify log file naming convention *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-11-03T02:19:28+08:00*
 - [f9fc787](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/f9fc78787b72dc822d4a01e1e59001304e27cb22) refactor(core): modernize python syntax and typing *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-10-27T02:06:59+08:00*
 - [2adab98](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/2adab98752b5c88e52434d1b319de28dca41084a) style(ruff): update ruff formatter and linter configuration *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-10-25T08:13:18+08:00*
 - [7caaa66](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/7caaa662fc80dd52c1f692d866398cee58c8ec88) gitignore: add backup patterns *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-10-16T20:15:16+08:00*
@@ -33,6 +34,7 @@ All notable changes to this project will be documented in this file.
 
 ### ⚙️ Miscellaneous Tasks in beta10
 
+- [c24543d](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/c24543de63d87522198e1b7ac852cf4309d93406) chore(dependencies): update anyio to 4.16.0 *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-11-03T02:22:09+08:00*
 - [bc0426f](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/bc0426f2f8cd96dc8ead049311143292d2e58c70) chore(deps): update sbom metadata *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-10-27T02:07:43+08:00*
 - [44dbff2](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/44dbff23f70285115c22db48c98b17748950b93e) chore(dependencies): update certifi to version 2026.10.23 *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-10-25T08:04:31+08:00*
 - [3aef862](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/3aef8629374a784aab9a8022f614d027d8a577d9) chore(dependencies): update certifi to 2026.10.19 *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-10-22T21:27:20+08:00*
@@ -670,4 +672,4 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-generated using git-cliff at 2026-10-27T02:09:35.134924629+08:00
+generated using git-cliff at 2026-11-03T02:24:13.630566554+08:00
