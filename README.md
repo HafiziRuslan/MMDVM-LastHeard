@@ -104,21 +104,21 @@ sudo ./main.sh
 
 To run the bot automatically on system boot, it is recommended to use a systemd service.
 
-1. Copy the service file to the systemd directory:
+1. Adjust the WorkingDirectory and ExecStart parameters to match your installation path:
 
   ```bash
-  sudo cp mmdvm-lastheard.service /etc/systemd/system/
-  ```
-
-2. Adjust the WorkingDirectory and ExecStart parameters to match your installation path:
-
-  ```bash
-  sudo nano /etc/systemd/system/mmdvm-lastheard.service
+  nano mmdvm-lastheard.service
   ```
 
   ```properties
   WorkingDirectory=/YourDir/MMDVM-LastHeard
   ExecStart=/bin/bash /YourDir/MMDVM-LastHeard/main.sh
+  ```
+
+2. Copy the service file to the systemd directory:
+
+  ```bash
+  sudo ln -sf $(pwd)/mmdvm-lastheard.service /etc/systemd/system
   ```
 
 3. Reload the systemd daemon:
