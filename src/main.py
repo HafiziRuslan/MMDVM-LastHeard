@@ -19,11 +19,8 @@
 import asyncio
 import configparser
 import csv
-from dataclasses import dataclass
-from dataclasses import field
 import datetime as dt
 import difflib
-from functools import lru_cache
 import gc
 import glob
 import logging
@@ -36,16 +33,18 @@ import signal
 import subprocess
 import sys
 import tomllib
+from dataclasses import dataclass, field
+from functools import lru_cache
 from typing import Optional
 
-from codes import COUNTRY_CODES
-from codes import MCC_CODES
-from dotenv import load_dotenv
 import httpx
 import humanize
+from dotenv import load_dotenv
 from safezip import SafeZipFile
 from telegram.ext import Application as TelegramApplication
 from telegram.ext import ApplicationBuilder
+
+from codes import COUNTRY_CODES, MCC_CODES
 
 
 @lru_cache
@@ -442,7 +441,7 @@ class TalkgroupManager:
 		"""Applies special talkgroup rules for DMRGateway and MCCs."""
 		for rule in self._dmr_gateway_manager.get_rules():
 			if rule.get('type') in ('TG', 'PC'):
-				for target_tg, label in [(4000, 'Disconnect'), (5004000, 'TGIF:DISCONNECT'), (9990, 'Parrot'), (31000, 'Parrot')]:
+				for target_tg, label in [(4000, 'Disconnect'), (5004000, 'TGIF:Disconnect'), (9990, 'Parrot'), (31000, 'Parrot')]:
 					src_tg = target_tg - rule['offset']
 					if rule['start'] <= src_tg <= rule['end']:
 						tg_map[str(src_tg)] = label
@@ -459,6 +458,7 @@ class DataUpdater:
 		self.telegram_bot = telegram_bot
 		self.project_url = project_url
 		self.target_dir = target_dir
+		self.radioid_token = os.getenv('RADIOID_API_TOKEN', None)
 		self.url = 'https://kf5iw.com/contactdb.php'
 		if not os.path.exists(self.target_dir):
 			os.makedirs(self.target_dir)
@@ -471,17 +471,21 @@ class DataUpdater:
 			async with httpx.AsyncClient(headers={'User-Agent': user_agent}) as client:
 				for rid_file in ['dmrid.dat', 'dstar_repeaters.json', 'nxdn.csv', 'nxdn_repeaters.json', 'p25_repeaters.json', 'rptrs.json', 'users.json']:
 					try:
-						rid_url = f'https://radioid.net/static/{rid_file}'
-						logging.info('Fetching %s from radioid.net', rid_file)
+						rid_url = f'https://radioid.net/data/download/{rid_file}'
+						logging.info('Fetching %s from RadioID.net', rid_file)
 						file_path = os.path.join(self.target_dir, rid_file)
-						async with client.stream('GET', rid_url, follow_redirects=True) as response:
+						if self.radioid_token:
+							radioid_stream = client.stream('GET', rid_url, follow_redirects=True, headers={'X-API-Token': self.radioid_token})
+						else:
+							radioid_stream = client.stream('GET', rid_url, follow_redirects=True)
+						async with radioid_stream as response:
 							response.raise_for_status()
 							with open(file_path, 'wb') as f:
 								async for chunk in response.aiter_bytes():
 									f.write(chunk)
 						self._process_file(file_path)
 					except Exception as rid_err:
-						logging.error('Failed to download %s from radioid.net: %s', rid_file, rid_err)
+						logging.error('Failed to download %s from RadioID.net: %s', rid_file, rid_err)
 						await self.telegram_bot.queue_message(f'❌ {rid_file} download <b>failed</b>.\nError: {rid_err}')
 				page_response = await client.get(self.url, follow_redirects=True)
 				page_response.raise_for_status()
@@ -534,23 +538,27 @@ class DataUpdater:
 				logging.error('Failed to process %s: %s', file_path, e)
 
 	async def run(self, stop_event: asyncio.Event):
-		"""Schedules the update task daily at 05:15+ UTC with a random offset."""
+		"""Schedules the update task weekly on Monday at 06:00 - 07:00 UTC."""
 		db_files = ['dmrid.dat', 'dstar_repeaters.json', 'nxdn.csv', 'nxdn_repeaters.json', 'p25_repeaters.json', 'rptrs.json', 'user.csv', 'users.json']
 
 		def is_outdated(file_path: str) -> bool:
 			if not os.path.exists(file_path):
 				return True
 			mtime = dt.datetime.fromtimestamp(os.path.getmtime(file_path), dt.UTC)
-			return (dt.datetime.now(dt.UTC) - mtime) > dt.timedelta(days=1)
+			return (dt.datetime.now(dt.UTC) - mtime) > dt.timedelta(days=7)
 
 		needs_update = any(is_outdated(os.path.join(self.target_dir, f)) for f in db_files)
 		if needs_update:
 			await self.update_user_db()
 		while not stop_event.is_set():
 			now = dt.datetime.now(dt.UTC)
-			target_time = now.replace(hour=5, minute=random.randint(15, 45), second=random.randint(0, 59), microsecond=0)
+			target_time = now.replace(hour=6, minute=random.randint(0, 59), second=random.randint(0, 59), microsecond=0)
+			days_ahead = 0 - target_time.weekday()
+			if days_ahead <= 0:
+				days_ahead += 7
+			target_time += dt.timedelta(days=days_ahead if now >= target_time or target_time.weekday() != now.weekday() else 0)
 			if now >= target_time:
-				target_time += dt.timedelta(days=1)
+				target_time += dt.timedelta(weeks=1)
 			wait_seconds = (target_time - now).total_seconds()
 			logging.info('Next user database update at %s', target_time.astimezone().isoformat(timespec='seconds'))
 			await self.telegram_bot.queue_message(f'ℹ️ Next user database update at <i>{target_time.astimezone().isoformat(timespec="seconds")}</i>...')
