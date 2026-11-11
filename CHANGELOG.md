@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [beta11] - (2026-11-12T04:07:54+08:00)
+
+- 2 commit(s) contributed to the release.
+- 9 day(s) passed between releases.
+
+### 🚀 Features in beta11
+
+- [ff6d803](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/ff6d8035f038821029aa95e8cafa3bca598dea79) feat(radioid): add RadioID.net API token support *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-11-12T04:07:54+08:00*
+
+### ⚙️ Miscellaneous Tasks in beta11
+
+- [58e0cd8](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/58e0cd894a4a61e10774c620a827552d598aa7fe) build(project): bump version to 0.1b11 and update dependencies *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-11-12T02:59:37+08:00*
+
+---
+
 ## [beta10] - (2026-11-03T05:32:25+08:00)
 
 - 30 commit(s) contributed to the release.
@@ -673,4 +688,4 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-generated using git-cliff at 2026-11-03T05:33:45.003030821+08:00
+generated using git-cliff at 2026-11-12T04:08:50.546691784+08:00
