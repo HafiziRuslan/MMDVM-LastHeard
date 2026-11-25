@@ -2,13 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
-## [beta11] - (2026-11-12T04:07:54+08:00)
+## [beta11] - (2026-11-25T21:51:53+08:00)
 
-- 2 commit(s) contributed to the release.
-- 9 day(s) passed between releases.
+- 3 commit(s) contributed to the release.
+- 23 day(s) passed between releases.
 
 ### 🚀 Features in beta11
 
+- [4c6586b](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/4c6586b42038406f8d083c5c99f44ccea321eaba) feat(deps): update certifi and humanize *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-11-25T21:51:53+08:00*
 - [ff6d803](https://github.com/HafiziRuslan/MMDVM-LastHeard/commit/ff6d8035f038821029aa95e8cafa3bca598dea79) feat(radioid): add RadioID.net API token support *by [@HafiziRuslan](https://github.com/HafiziRuslan) on 2026-11-12T04:07:54+08:00*
 
 ### ⚙️ Miscellaneous Tasks in beta11
@@ -688,4 +689,4 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-generated using git-cliff at 2026-11-12T04:08:50.546691784+08:00
+generated using git-cliff at 2026-11-25T21:53:02.343219302+08:00
