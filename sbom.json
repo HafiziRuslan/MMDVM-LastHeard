@@ -2,14 +2,14 @@
   "bomFormat": "CycloneDX",
   "specVersion": "1.5",
   "version": 1,
-  "serialNumber": "urn:uuid:f7c7b16a-f8db-47ae-a768-8a600d8d78f5",
+  "serialNumber": "urn:uuid:5ec7a990-29c2-470d-84b2-08685466fd2d",
   "metadata": {
-    "timestamp": "2026-11-11T18:59:06.581375000Z",
+    "timestamp": "2026-11-25T13:48:45.448486000Z",
     "tools": [
       {
         "vendor": "Astral Software Inc.",
         "name": "uv",
-        "version": "0.13.7"
+        "version": "0.13.10"
       }
     ],
     "component": {
@@ -35,10 +35,10 @@
     },
     {
       "type": "library",
-      "bom-ref": "certifi-3@2026.10.23",
+      "bom-ref": "certifi-3@2026.11.20",
       "name": "certifi",
-      "version": "2026.10.23",
-      "purl": "pkg:pypi/certifi@2026.10.23"
+      "version": "2026.11.20",
+      "purl": "pkg:pypi/certifi@2026.11.20"
     },
     {
       "type": "library",
@@ -63,10 +63,10 @@
     },
     {
       "type": "library",
-      "bom-ref": "humanize-7@4.16.0",
+      "bom-ref": "humanize-7@4.17.0",
       "name": "humanize",
-      "version": "4.16.0",
-      "purl": "pkg:pypi/humanize@4.16.0"
+      "version": "4.17.0",
+      "purl": "pkg:pypi/humanize@4.17.0"
     },
     {
       "type": "library",
@@ -119,7 +119,7 @@
       ]
     },
     {
-      "ref": "certifi-3@2026.10.23"
+      "ref": "certifi-3@2026.11.20"
     },
     {
       "ref": "h11-4@0.16.0"
@@ -127,7 +127,7 @@
     {
       "ref": "httpcore-5@1.0.9",
       "dependsOn": [
-        "certifi-3@2026.10.23",
+        "certifi-3@2026.11.20",
         "h11-4@0.16.0"
       ]
     },
@@ -135,13 +135,13 @@
       "ref": "httpx-6@0.28.1",
       "dependsOn": [
         "anyio-2@4.16.0",
-        "certifi-3@2026.10.23",
+        "certifi-3@2026.11.20",
         "httpcore-5@1.0.9",
         "idna-8@3.20"
       ]
     },
     {
-      "ref": "humanize-7@4.16.0"
+      "ref": "humanize-7@4.17.0"
     },
     {
       "ref": "idna-8@3.20"
@@ -149,7 +149,7 @@
     {
       "ref": "mmdvm-lastheard-1@0.1b11",
       "dependsOn": [
-        "humanize-7@4.16.0",
+        "humanize-7@4.17.0",
         "python-dotenv-9@1.2.4",
         "python-telegram-bot-10@22.8",
         "safezip-11@0.2"
