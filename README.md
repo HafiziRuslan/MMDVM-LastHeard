@@ -130,13 +130,7 @@ To run the bot automatically on system boot, it is recommended to use a systemd 
 4. Enable the service to start on boot:
 
   ```bash
-  sudo systemctl enable mmdvm-lastheard
-  ```
-
-5. Start the service:
-
-  ```bash
-  sudo systemctl start mmdvm-lastheard
+  sudo systemctl enable --now mmdvm-lastheard
   ```
 
 ## 🔄 Update
